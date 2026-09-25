@@ -45,3 +45,6 @@ _patch_*.py
 # ---- 前端构建产物误拷进后端 static 的遗留（22MB，nginx 才是真正的前端源）----
 backend/src/main/resources/static/assets/
 backend/src/main/resources/static/index.html
+
+# ---- 运维脚本（含凭据检测模式串，不入库）----
+push_source.py
