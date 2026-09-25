@@ -115,6 +115,45 @@
       </table>
     </section>
 
+    <!-- ===== 商务合作 / 数据订阅 ===== -->
+    <section class="op-card op-biz">
+      <h2>
+        商务合作 · 数据订阅
+        <small>商业使用需授权</small>
+      </h2>
+      <div class="biz-grid">
+        <div class="biz-l">
+          <p class="biz-lead">
+            需要将化工行情数据接入自有系统、批量导出历史数据、或用于商业产品？
+            <b>我们提供商业授权与定制数据服务。</b>
+          </p>
+          <ul class="biz-list">
+            <li><b>数据授权</b> —— 行情数据批量授权，接入你的业务系统</li>
+            <li><b>API 商用额度</b> —— 高并发调用、突破积分限制，按需定制</li>
+            <li><b>私有化部署</b> —— 数据不出内网，本地机房部署</li>
+            <li><b>定制开发</b> —— 字段定制、指标定制、接口对接开发</li>
+          </ul>
+          <div class="biz-contact">
+            <div class="biz-mail">
+              <span>商务邮箱</span>
+              <b>chemprice@163.com</b>
+              <button class="copy-mini" @click="copyText('chemprice@163.com', 'mail')">
+                {{ copied['mail'] ? '✓ 已复制' : '复制' }}
+              </button>
+            </div>
+          </div>
+          <p class="biz-warn">
+            ⚠️ 本项目源码采用非商业许可，<b>禁止商业使用</b>。商业用途须先获得书面授权。
+          </p>
+        </div>
+        <div class="biz-r">
+          <img src="/gzh-qr.png" alt="ChemPrice 公众号二维码" />
+          <p>扫码关注公众号</p>
+          <b>后台留言咨询合作</b>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== 接口文档（REDFOX 版式：左导航 + 右侧端点区块） ===== -->
     <section class="op-card op-api">
       <h2>接口文档</h2>
@@ -1443,10 +1482,54 @@ onMounted(load)
 .op-modal .m-body .op-admin thead th { position: sticky; top: 0; z-index: 1; }
 .op-modal .m-foot { font-size: 11.5px; color: var(--ink4); margin-top: 10px; }
 
+
+/* ===== 商务合作 / 数据订阅 ===== */
+.op-biz { border-color: #e8d9a8 !important; background: linear-gradient(180deg,#fffdf6 0%, #fff 100%) !important; }
+.op-biz h2 { color: #8a7320; }
+.op-biz h2 small {
+  font-size: 11px; font-weight: 500; color: #b0891f; background: #fdf6e3;
+  border: 1px solid #e8d9a8; border-radius: 5px; padding: 1px 8px; margin-left: 8px;
+}
+.biz-grid { display: grid; grid-template-columns: 1fr 190px; gap: 26px; align-items: start; }
+.biz-lead { font-size: 13.5px; color: var(--ink2); line-height: 1.85; }
+.biz-lead b { color: #8a7320; }
+.biz-list { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+.biz-list li {
+  font-size: 13px; color: var(--ink2); line-height: 1.7;
+  padding-left: 20px; position: relative;
+}
+.biz-list li::before {
+  content: ''; position: absolute; left: 5px; top: 9px;
+  width: 6px; height: 6px; border-radius: 50%; background: #c9a227;
+}
+.biz-list li b { color: var(--ink); }
+.biz-contact { margin-top: 16px; }
+.biz-mail {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #e8d9a8; border-radius: var(--r);
+  padding: 10px 16px;
+}
+.biz-mail span { font-size: 12px; color: var(--ink4); }
+.biz-mail b { font-size: 14px; color: #8a7320; font-family: var(--mono); letter-spacing: .2px; }
+.biz-warn {
+  margin-top: 14px; font-size: 12px; color: #92400e; line-height: 1.7;
+  background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--r);
+  padding: 9px 14px;
+}
+.biz-warn b { color: #b45309; }
+.biz-r { text-align: center; }
+.biz-r img {
+  width: 100%; max-width: 168px; border-radius: var(--r);
+  border: 1px solid var(--border); background: #fff; padding: 6px;
+}
+.biz-r p { margin-top: 9px; font-size: 12px; color: var(--ink4); }
+.biz-r b { display: block; margin-top: 3px; font-size: 12.5px; color: #8a7320; }
+
 @media (max-width: 900px) {
   .op-stats { grid-template-columns: repeat(2, 1fr); }
   .api-layout { grid-template-columns: 1fr; }
   .api-nav { position: static; flex-direction: row; flex-wrap: wrap; }
+  .biz-grid { grid-template-columns: 1fr; }
   .api-base { width: 100%; }
 }
 @media (max-width: 760px) {

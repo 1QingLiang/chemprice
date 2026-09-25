@@ -12,9 +12,23 @@
 ![Vue](https://img.shields.io/badge/Vue-3.4-4FC08D?logo=vuedotjs&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6.2-646CFF?logo=vite&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-C9A227)
+![License](https://img.shields.io/badge/License-Noncommercial-C9A227)
 
 </div>
+
+---
+
+> ## ⚠️ 禁止商业使用
+>
+> 本项目采用 **PolyForm Noncommercial License 1.0.0** 授权，**仅供学习、研究与个人非商业用途**。
+> 未经书面授权，**禁止任何形式的商业使用**（包括但不限于：出售、SaaS 化提供、企业内部商业运营、
+> 产品集成、数据转售）。
+>
+> **商业授权与合作请联系：`chemprice@163.com`**
+>
+> 📱 扫码关注公众号，后台留言也可联系：
+>
+> <img src="docs/images/gzh-qr.png" alt="公众号二维码" width="160">
 
 ---
 
@@ -314,14 +328,64 @@ npm run build        # 生产构建，产物在 dist/
 
 ---
 
-## 十四、许可证
+## 十四、许可证与商业授权
 
-本项目基于 [MIT License](LICENSE) 发布。
+本项目采用 **[PolyForm Noncommercial License 1.0.0](LICENSE)**，并附加中文声明。
+
+### 免费允许（非商业）
+
+- 个人学习、技术研究与本地实验
+- 学校、科研机构、公益组织、政府机构的教学与科研使用
+- 技术社区、博客、论文中的引用与分享（需注明出处）
+- 非商业目的的二次开发（须保留本许可协议）
+
+### ⛔ 禁止（未经书面授权）
+
+- **直接售卖** —— 作为商品出售、出租或许可给第三方
+- **SaaS / 云服务化** —— 部署为对外收费的在线服务或数据订阅服务
+- **企业内部商业运营** —— 以营利为目的的公司内部使用
+- **产品集成** —— 嵌入商业软件产品或解决方案中分发
+- **数据转售** —— 利用本项目获取数据后对外售卖
+
+### 关于数据
+
+本协议**仅授权代码**。平台展示与 API 提供的**行情数据及其衍生数据不在授权范围内**，
+其权利归数据提供方所有。任何形式的数据使用、分发、再发布均须另行获得书面授权。
+
+### 商业授权与合作
+
+| 联系方式 | |
+| --- | --- |
+| **邮箱** | **chemprice@163.com** |
+| **公众号** | 扫码关注「ChemPrice 化工价格平台」，后台留言 |
+
+可授权范围：源码商用许可、数据授权、API 商用额度、定制开发、私有化部署。
+具体条款以双方签署的书面协议为准。
+
+---
+
+## 十五、联系方式
+
+<div align="center">
+
+**商务合作 / 数据订阅 / 技术交流**
+
+📧 **chemprice@163.com**
+
+<img src="docs/images/gzh-qr.png" alt="ChemPrice 公众号二维码" width="180">
+
+扫码关注公众号「**ChemPrice 化工价格平台**」
+
+行业行情动态 · 数据订阅咨询 · 商务合作洽谈
+
+</div>
 
 ---
 
 <div align="center">
 
 **数据来源：ChemPrice 化工价格平台**
+
+© ChemPrice 化工价格平台 · 禁止商业使用 · 商业授权请联系 chemprice@163.com
 
 </div>

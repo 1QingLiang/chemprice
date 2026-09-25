@@ -1,194 +1,174 @@
-木兰宽松许可证，第2版
+# 许可协议
 
-木兰宽松许可证，第2版
+本项目（ChemPrice 化工价格平台，仓库 chemprice/chemprice-chemical-platform，下称“本软件”）
+采用 **PolyForm Noncommercial License 1.0.0** 授权，并附加下方【附加声明】。
+两者不一致时，以【附加声明】为准。
 
-2020年1月 http://license.coscl.org.cn/MulanPSL2
+---
 
-您对“软件”的复制、使用、修改及分发受木兰宽松许可证，第2版（“本许可证”）的如下条款的约束：
+# PolyForm Noncommercial License 1.0.0
 
-0.   定义
+<https://polyformproject.org/licenses/noncommercial/1.0.0>
 
-“软件” 是指由“贡献”构成的许可在“本许可证”下的程序和相关文档的集合。
+## Acceptance
 
-“贡献” 是指由任一“贡献者”许可在“本许可证”下的受版权法保护的作品。
+In order to get any license under these terms, you must agree to them as both
+strict obligations and conditions to all your licenses.
 
-“贡献者” 是指将受版权法保护的作品许可在“本许可证”下的自然人或“法人实体”。
+## Copyright License
 
-“法人实体” 是指提交贡献的机构及其“关联实体”。
+The licensor grants you a copyright license for the software to do everything
+you might do with the software that would otherwise infringe the licensor's
+copyright in it for any permitted purpose. However, you may only distribute the
+software according to [Distribution License](#distribution-license) and make
+changes or new works based on the software according to
+[Changes and New Works License](#changes-and-new-works-license).
 
-“关联实体” 是指，对“本许可证”下的行为方而言，控制、受控制或与其共同受控制的机构，此处的控制是
-指有受控方或共同受控方至少50%直接或间接的投票权、资金或其他有价证券。
+## Distribution License
 
-1.   授予版权许可
+The licensor grants you an additional copyright license to distribute copies of
+the software. Your license to distribute covers distributing the software with
+changes and new works permitted by
+[Changes and New Works License](#changes-and-new-works-license).
 
-每个“贡献者”根据“本许可证”授予您永久性的、全球性的、免费的、非独占的、不可撤销的版权许可，您可
-以复制、使用、修改、分发其“贡献”，不论修改与否。
+## Notices
 
-2.   授予专利许可
+You must ensure that anyone who gets a copy of any part of the software from you
+also gets a copy of these terms or the URL for them above, as well as copies of
+any plain-text lines beginning with `Required Notice:` that the licensor
+provided with the software. For example:
 
-每个“贡献者”根据“本许可证”授予您永久性的、全球性的、免费的、非独占的、不可撤销的（根据本条规定
-撤销除外）专利许可，供您制造、委托制造、使用、许诺销售、销售、进口其“贡献”或以其他方式转移其“贡
-献”。前述专利许可仅限于“贡献者”现在或将来拥有或控制的其“贡献”本身或其“贡献”与许可“贡献”时的“软
-件”结合而将必然会侵犯的专利权利要求，不包括对“贡献”的修改或包含“贡献”的其他结合。如果您或您的“
-关联实体”直接或间接地，就“软件”或其中的“贡献”对任何人发起专利侵权诉讼（包括反诉或交叉诉讼）或
-其他专利维权行动，指控其侵犯专利权，则“本许可证”授予您对“软件”的专利许可自您提起诉讼或发起维权
-行动之日终止。
+> Required Notice: Copyright ChemPrice 化工价格平台
 
-3.   无商标许可
+## Changes and New Works License
 
-“本许可证”不提供对“贡献者”的商品名称、商标、服务标志或产品名称的商标许可，但您为满足第4条规定
-的声明义务而必须使用除外。
+The licensor grants you an additional copyright license to make changes and new
+works based on the software for any permitted purpose.
 
-4.   分发限制
+## Patent License
 
-您可以在任何媒介中将“软件”以源程序形式或可执行形式重新分发，不论修改与否，但您必须向接收者提供“
-本许可证”的副本，并保留“软件”中的版权、商标、专利及免责声明。
+The licensor grants you a patent license for the software that covers patent
+claims the licensor can license, or becomes able to license, that you would
+infringe by using the software.
 
-5.   免责声明与责任限制
+## Noncommercial Purposes
 
-“软件”及其中的“贡献”在提供时不带任何明示或默示的担保。在任何情况下，“贡献者”或版权所有者不对
-任何人因使用“软件”或其中的“贡献”而引发的任何直接或间接损失承担责任，不论因何种原因导致或者基于
-何种法律理论，即使其曾被建议有此种损失的可能性。
+Any noncommercial purpose is a permitted purpose.
 
-6.   语言
+## Personal Uses
 
-“本许可证”以中英文双语表述，中英文版本具有同等法律效力。如果中英文版本存在任何冲突不一致，以中文
-版为准。
+Personal use for research, experiment, and testing for the benefit of public
+knowledge, personal study, private entertainment, hobby projects, amateur
+pursuits, or religious observance, without any anticipated commercial
+application, is use for a permitted purpose.
 
-条款结束
+## Noncommercial Organizations
 
-如何将木兰宽松许可证，第2版，应用到您的软件
+Use by any charitable organization, educational institution, public research
+organization, public safety or health organization, environmental protection
+organization, or government institution is use for a permitted purpose
+regardless of the source of funding or obligations resulting from the funding.
 
-如果您希望将木兰宽松许可证，第2版，应用到您的新软件，为了方便接收者查阅，建议您完成如下三步：
+## Fair Use
 
-1， 请您补充如下声明中的空白，包括软件名、软件的首次发表年份以及您作为版权人的名字；
+You may have "fair use" rights for the software under the law. These terms do
+not limit them.
 
-2， 请您在软件包的一级目录下创建以“LICENSE”为名的文件，将整个许可证文本放入该文件中；
+## No Liability
 
-3， 请将如下声明文本放入每个源文件的头部注释中。
+**As far as the law allows, the software comes as is, without any warranty or
+condition, and the licensor will not be liable to you for any damages arising
+out of these terms or the use or nature of the software, under any kind of
+legal claim.**
 
-Copyright (c) [Year] [name of copyright holder]
-[Software Name] is licensed under Mulan PSL v2.
-You can use this software according to the terms and conditions of the Mulan
-PSL v2.
-You may obtain a copy of Mulan PSL v2 at:
-         http://license.coscl.org.cn/MulanPSL2
-THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
-See the Mulan PSL v2 for more details.
+## Definitions
 
-Mulan Permissive Software License，Version 2
+The **licensor** is the individual or entity offering these terms, and the
+**software** is the software the licensor makes available under these terms.
 
-Mulan Permissive Software License，Version 2 (Mulan PSL v2)
+**You** refers to the individual or entity agreeing to these terms.
 
-January 2020 http://license.coscl.org.cn/MulanPSL2
+**Your company** is any legal entity, sole proprietorship, or other kind of
+organization that you work for, plus all organizations that have control over,
+are under the control of, or are under common control with that organization.
 
-Your reproduction, use, modification and distribution of the Software shall
-be subject to Mulan PSL v2 (this License) with the following terms and
-conditions:
+**Control** means ownership of substantially all the assets of an entity, or
+the power to direct its management and policies by vote, contract, or
+otherwise. Control can be direct or indirect.
 
-0. Definition
+**Your licenses** are all the licenses granted to you for the software under
+these terms.
 
-Software means the program and related documents which are licensed under
-this License and comprise all Contribution(s).
+**Use** means anything you do with the software requiring one of your licenses.
 
-Contribution means the copyrightable work licensed by a particular
-Contributor under this License.
+**Trademark** means trademarks, service marks, and similar rights.
 
-Contributor means the Individual or Legal Entity who licenses its
-copyrightable work under this License.
+---
 
-Legal Entity means the entity making a Contribution and all its
-Affiliates.
+# 附加声明（中文，优先适用）
 
-Affiliates means entities that control, are controlled by, or are under
-common control with the acting entity under this License, ‘control’ means
-direct or indirect ownership of at least fifty percent (50%) of the voting
-power, capital or other securities of controlled or commonly controlled
-entity.
+> **⚠️ 本项目禁止商业使用。**
+> **商业授权与合作请联系：chemprice@163.com**
 
-1. Grant of Copyright License
+## 一、允许的使用
 
-Subject to the terms and conditions of this License, each Contributor hereby
-grants to you a perpetual, worldwide, royalty-free, non-exclusive,
-irrevocable copyright license to reproduce, use, modify, or distribute its
-Contribution, with modification or not.
+在遵守本协议的前提下，**免费允许**以下非商业用途：
 
-2. Grant of Patent License
+1. **个人学习与研究** —— 阅读源码、学习技术实现、本地运行调试、技术实验。
+2. **非商业组织使用** —— 学校、科研机构、公益组织、政府机构用于教学、科研或公共服务。
+3. **技术交流与分享** —— 在技术社区、博客、论文中引用本项目代码或思路（需注明出处）。
+4. **二次开发（限非商业）** —— 基于本项目修改、扩展，用于上述非商业目的，并保留本许可协议。
 
-Subject to the terms and conditions of this License, each Contributor hereby
-grants to you a perpetual, worldwide, royalty-free, non-exclusive,
-irrevocable (except for revocation under this Section) patent license to
-make, have made, use, offer for sale, sell, import or otherwise transfer its
-Contribution, where such patent license is only limited to the patent claims
-owned or controlled by such Contributor now or in future which will be
-necessarily infringed by its Contribution alone, or by combination of the
-Contribution with the Software to which the Contribution was contributed.
-The patent license shall not apply to any modification of the Contribution,
-and any other combination which includes the Contribution. If you or your
-Affiliates directly or indirectly institute patent litigation (including a
-cross claim or counterclaim in a litigation) or other patent enforcement
-activities against any individual or entity by alleging that the Software or
-any Contribution in it infringes patents, then any patent license granted to
-you under this License for the Software shall terminate as of the date such
-litigation or activity is filed or taken.
+## 二、明确禁止的使用
 
-3. No Trademark License
+**未经版权持有人书面授权，禁止任何形式的商业使用**，包括但不限于：
 
-No trademark license is granted to use the trade names, trademarks, service
-marks, or product names of Contributor, except as required to fulfill notice
-requirements in section 4.
+1. **直接售卖** —— 将本项目或其修改版作为商品出售、出租、许可给第三方。
+2. **SaaS / 云服务化** —— 将本项目部署为对外提供服务的在线平台并向用户收费，
+   或以本项目为基础提供付费的数据查询、API 调用、报表订阅等服务。
+3. **企业内部商业运营** —— 在公司、企业中以营利为目的的内部使用
+   （如用于生产决策、销售定价、客户交付等商业环节）。
+4. **产品集成** —— 将本项目代码嵌入商业软件产品、商业化硬件产品或商业解决方案中分发。
+5. **数据转售** —— 利用本项目获取、加工数据后向第三方售卖或提供付费服务。
+6. **去除标识** —— 删除、隐藏或篡改本项目中的版权声明、许可声明与品牌标识后使用。
 
-4. Distribution Restriction
+## 三、数据与内容的额外限制
 
-You may distribute the Software in any medium with or without modification,
-whether in source or executable forms, provided that you provide recipients
-with a copy of this License and retain copyright, patent, trademark and
-disclaimer statements in the Software.
+1. **数据不随代码授权** —— 本协议仅授予**代码**的使用权。平台所展示、通过 API 提供的
+   **行情数据及其衍生数据**，其权利归数据提供方所有，**不在本协议授权范围内**。
+   任何形式的数据使用、分发、再发布，均须另行获得书面授权。
+2. **商业数据合作** —— 如需将本平台数据用于商业用途（含接入自有系统、对外提供数据服务、
+   制作数据产品等），**必须签署商业授权协议**。
 
-5. Disclaimer of Warranty and Limitation of Liability
+## 四、商业授权
 
-THE SOFTWARE AND CONTRIBUTION IN IT ARE PROVIDED WITHOUT WARRANTIES OF ANY
-KIND, EITHER EXPRESS OR IMPLIED. IN NO EVENT SHALL ANY CONTRIBUTOR OR
-COPYRIGHT HOLDER BE LIABLE TO YOU FOR ANY DAMAGES, INCLUDING, BUT NOT
-LIMITED TO ANY DIRECT, OR INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING
-FROM YOUR USE OR INABILITY TO USE THE SOFTWARE OR THE CONTRIBUTION IN IT, NO
-MATTER HOW IT’S CAUSED OR BASED ON WHICH LEGAL THEORY, EVEN IF ADVISED OF
-THE POSSIBILITY OF SUCH DAMAGES.
+如您希望将本项目或其数据用于上述禁止的用途，请通过以下方式联系获取商业授权：
 
-6. Language
+| 联系方式 | 说明 |
+| --- | --- |
+| **邮箱** | **chemprice@163.com** |
+| **微信公众号** | 扫码关注「ChemPrice 化工价格平台」并在后台留言 |
 
-THIS LICENSE IS WRITTEN IN BOTH CHINESE AND ENGLISH, AND THE CHINESE VERSION
-AND ENGLISH VERSION SHALL HAVE THE SAME LEGAL EFFECT. IN THE CASE OF
-DIVERGENCE BETWEEN THE CHINESE AND ENGLISH VERSIONS, THE CHINESE VERSION
-SHALL PREVAIL.
+商业授权范围可包括：源码商用许可、数据授权、API 商用额度、定制开发、私有化部署等。
+具体条款与费用以双方签署的书面协议为准。
 
-END OF THE TERMS AND CONDITIONS
+## 五、免责声明
 
-How to Apply the Mulan Permissive Software License，Version 2
-(Mulan PSL v2) to Your Software
+1. 本软件按“现状”提供，不附带任何明示或暗示的担保，包括但不限于适销性、
+   特定用途适用性与非侵权性的担保。
+2. 因使用或无法使用本软件所导致的任何直接、间接、附带、特殊或后果性损失，
+   版权持有人不承担任何责任。
+3. 本软件中的行情数据仅供参考，**不构成任何投资建议或交易依据**。
+   使用者据此作出的任何决策及后果，由使用者自行承担。
 
-To apply the Mulan PSL v2 to your work, for easy identification by
-recipients, you are suggested to complete following three steps:
+## 六、协议的终止
 
-i. Fill in the blanks in following statement, including insert your software
-name, the year of the first publication of your software, and your name
-identified as the copyright owner;
+一旦您违反上述任何条款，本协议授予的全部权利**立即自动终止**，
+您必须立即停止使用并删除本软件的所有副本。
+版权持有人保留追究法律责任的权利。
 
-ii. Create a file named "LICENSE" which contains the whole context of this
-License in the first directory of your software package;
+---
 
-iii. Attach the statement to the appropriate annotated syntax at the
-beginning of each source file.
+Copyright (c) ChemPrice 化工价格平台. All rights reserved.
 
-Copyright (c) [Year] [name of copyright holder]
-[Software Name] is licensed under Mulan PSL v2.
-You can use this software according to the terms and conditions of the Mulan
-PSL v2.
-You may obtain a copy of Mulan PSL v2 at:
-         http://license.coscl.org.cn/MulanPSL2
-THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
-See the Mulan PSL v2 for more details.
+商业授权与合作：**chemprice@163.com**
