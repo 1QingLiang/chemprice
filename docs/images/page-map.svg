@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#15414E" flood-opacity="0.09"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="620" fill="#F7F9FA" rx="14"/>
+  <text x="500" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#15414E">前端页面地图</text>
+  <text x="500" y="63" text-anchor="middle" font-size="12.5" fill="#7A8C93">22 个一级页面 · 29 个 Vue 组件 · 按功能域分组</text>
+
+  <!-- 第一行：数据域 -->
+  <rect x="30" y="86" width="290" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="30" y="86" width="290" height="34" rx="12" fill="#5ECBB0"/>
+  <rect x="30" y="106" width="290" height="14" fill="#5ECBB0"/>
+  <text x="46" y="108" font-size="13" font-weight="700" fill="#FFFFFF">数据浏览域</text>
+  <g font-size="12" fill="#41575E">
+    <text x="50" y="148">◆ 首页　　/</text>
+    <text x="50" y="176">◆ 数据看板　/dashboard</text>
+    <text x="50" y="204">◆ 商品中心　/commodities</text>
+    <text x="50" y="232">◆ 数据表　　/price-table</text>
+    <text x="50" y="260">◆ 涨跌排行　/movers</text>
+  </g>
+
+  <!-- 第二行：分析域 -->
+  <rect x="348" y="86" width="304" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="348" y="86" width="304" height="34" rx="12" fill="#5ECBB0"/>
+  <rect x="348" y="106" width="304" height="14" fill="#5ECBB0"/>
+  <text x="364" y="108" font-size="13" font-weight="700" fill="#FFFFFF">分析决策域</text>
+  <g font-size="12" fill="#41575E">
+    <text x="368" y="148">◆ 报价点分析　/analysis</text>
+    <text x="368" y="176">◆ 标点地图　　/enterprise-map</text>
+    <text x="368" y="204">◆ 物性查询　　/chem-data</text>
+    <text x="368" y="232">◆ 商品详情　　/commodity/:id</text>
+    <text x="368" y="260" font-size="11.5" fill="#8A9AA0">地图含省市下钻 + 三张联动分析图</text>
+  </g>
+
+  <!-- 第三行：业务域 -->
+  <rect x="680" y="86" width="290" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="680" y="86" width="290" height="34" rx="12" fill="#3FA890"/>
+  <rect x="680" y="106" width="290" height="14" fill="#3FA890"/>
+  <text x="696" y="108" font-size="13" font-weight="700" fill="#FFFFFF">供需与认证域</text>
+  <g font-size="12" fill="#41575E">
+    <text x="700" y="148">◆ 供需广场　　/supply-demand</text>
+    <text x="700" y="176">◆ 供应商认证　/supplier-verify</text>
+    <text x="700" y="204">◆ 供应商审核　/supplier-audit</text>
+    <text x="700" y="232">◆ 推送设置　　/push-settings</text>
+    <text x="700" y="260" font-size="11.5" fill="#8A9AA0">审核页仅管理员可见</text>
+  </g>
+
+  <!-- 第二排 -->
+  <rect x="30" y="302" width="290" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="30" y="302" width="290" height="34" rx="12" fill="#C9A227"/>
+  <rect x="30" y="322" width="290" height="14" fill="#C9A227"/>
+  <text x="46" y="324" font-size="13" font-weight="700" fill="#FFFFFF">管理域（仅 ADMIN）</text>
+  <g font-size="12" fill="#41575E">
+    <text x="50" y="364">◆ 用户管理　　/user-manage</text>
+    <text x="50" y="392">◆ 用户看板　　/user-analytics</text>
+    <text x="50" y="420">◆ AI 问答记录 /ai-logs</text>
+    <text x="50" y="448">◆ 定时服务监控 /scheduler</text>
+    <text x="50" y="476" font-size="11.5" fill="#8A9AA0">监控信号取自服务器真实状态</text>
+  </g>
+
+  <rect x="348" y="302" width="304" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="348" y="302" width="304" height="34" rx="12" fill="#C9A227"/>
+  <rect x="348" y="322" width="304" height="14" fill="#C9A227"/>
+  <text x="364" y="324" font-size="13" font-weight="700" fill="#FFFFFF">开放与工具域</text>
+  <g font-size="12" fill="#41575E">
+    <text x="368" y="364">◆ 开放 API　　/open-api</text>
+    <text x="368" y="392">◆ 办公工具　　/tools</text>
+    <text x="368" y="420">◆ 使用手册　　/help</text>
+    <text x="368" y="448" font-size="11.5" fill="#8A9AA0">手册为 23 章独立资料站，页面内嵌 iframe</text>
+    <text x="368" y="472" font-size="11.5" fill="#8A9AA0">开放 API 采用积分制 + Key 鉴权</text>
+  </g>
+
+  <rect x="680" y="302" width="290" height="196" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft2)"/>
+  <rect x="680" y="302" width="290" height="34" rx="12" fill="#15414E"/>
+  <rect x="680" y="322" width="290" height="14" fill="#15414E"/>
+  <text x="696" y="324" font-size="13" font-weight="700" fill="#FFFFFF">技术特性</text>
+  <g font-size="12" fill="#41575E">
+    <text x="700" y="364">· 路由守卫 + 角色控制</text>
+    <text x="700" y="392">· 四维权限模型</text>
+    <text x="700" y="420">· 统一弹层组件</text>
+    <text x="700" y="448">· 品牌设计令牌 tokens.css</text>
+    <text x="700" y="474" font-size="11.5" fill="#8A9AA0">涨红跌绿，符合国内习惯</text>
+  </g>
+
+  <!-- 底部 -->
+  <rect x="30" y="518" width="940" height="76" rx="12" fill="#FFFFFF" stroke="#DCE6E9"/>
+  <text x="500" y="544" text-anchor="middle" font-size="12" fill="#41575E">四个权限维度彼此独立：<tspan font-weight="700" fill="#15414E">数据权限</tspan>（商品白名单）· <tspan font-weight="700" fill="#15414E">导出权限</tspan> · <tspan font-weight="700" fill="#15414E">标点地图</tspan>（含有效期）· <tspan font-weight="700" fill="#15414E">开放 API</tspan></text>
+  <text x="500" y="570" text-anchor="middle" font-size="11.5" fill="#7A8C93">数据来源：ChemPrice 化工价格平台</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <linearGradient id="gBrand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5ECBB0"/>
+      <stop offset="100%" stop-color="#3FA890"/>
+    </linearGradient>
+    <linearGradient id="gDeep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B4E5C"/>
+      <stop offset="100%" stop-color="#15414E"/>
+    </linearGradient>
+    <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D9B449"/>
+      <stop offset="100%" stop-color="#C9A227"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#8AA6B0"/>
+    </marker>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#15414E" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="560" fill="#F7F9FA" rx="14"/>
+  <text x="500" y="42" text-anchor="middle" font-size="21" font-weight="700" fill="#15414E">ChemPrice 系统架构总览</text>
+  <text x="500" y="66" text-anchor="middle" font-size="12.5" fill="#7A8C93">浏览器 / 开放 API 客户端 / MCP 客户端  →  nginx  →  Spring Boot  →  MySQL</text>
+
+  <!-- 客户端层 -->
+  <rect x="40" y="92" width="920" height="82" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft)"/>
+  <text x="58" y="115" font-size="12" font-weight="700" fill="#3FA890">客户端</text>
+  <rect x="62" y="126" width="184" height="36" rx="8" fill="#EAF7F4" stroke="#9FDCCB"/>
+  <text x="154" y="149" text-anchor="middle" font-size="12.5" fill="#15414E">Vue 3 SPA（浏览器）</text>
+  <rect x="262" y="126" width="184" height="36" rx="8" fill="#EAF7F4" stroke="#9FDCCB"/>
+  <text x="354" y="149" text-anchor="middle" font-size="12.5" fill="#15414E">开放 API（X-API-Key）</text>
+  <rect x="462" y="126" width="184" height="36" rx="8" fill="#EAF7F4" stroke="#9FDCCB"/>
+  <text x="554" y="149" text-anchor="middle" font-size="12.5" fill="#15414E">MCP 客户端</text>
+  <rect x="662" y="126" width="184" height="36" rx="8" fill="#EAF7F4" stroke="#9FDCCB"/>
+  <text x="754" y="149" text-anchor="middle" font-size="12.5" fill="#15414E">定时任务 / 微信草稿</text>
+
+  <!-- nginx -->
+  <rect x="40" y="196" width="920" height="66" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft)"/>
+  <text x="58" y="219" font-size="12" font-weight="700" fill="#3FA890">接入层</text>
+  <rect x="62" y="228" width="876" height="26" rx="7" fill="#F0F5F6" stroke="#D2E0E3"/>
+  <text x="500" y="246" text-anchor="middle" font-size="12.5" fill="#41575E">nginx  ·  静态托管  ·  反向代理  ·  /mcp 转发  ·  四区限流（认证 · 业务 · 开放API · 静态）</text>
+
+  <!-- 后端 -->
+  <rect x="40" y="284" width="580" height="182" rx="12" fill="url(#gDeep)" filter="url(#soft)"/>
+  <text x="62" y="310" font-size="14" font-weight="700" fill="#FFFFFF">Spring Boot 3.5.6 · Java 21 · 端口 9000</text>
+  <g font-size="11.5" fill="#CFE9E2">
+    <rect x="62" y="322" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="195" y="342" text-anchor="middle">Controller  × 23</text>
+    <rect x="342" y="322" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="475" y="342" text-anchor="middle">Service 业务层</text>
+    <rect x="62" y="360" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="195" y="380" text-anchor="middle">MyBatis Mapper + XML</text>
+    <rect x="342" y="360" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="475" y="380" text-anchor="middle">Spring Security · JWT</text>
+    <rect x="62" y="398" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="195" y="418" text-anchor="middle">定时任务 · Excel 导出</text>
+    <rect x="342" y="398" width="266" height="30" rx="7" fill="#0F3540" stroke="#2C6470"/>
+    <text x="475" y="418" text-anchor="middle">邮件 / 站内通知</text>
+    <rect x="62" y="436" width="546" height="18" rx="6" fill="none"/>
+    <text x="335" y="450" text-anchor="middle" fill="#8FC7B9">凭据一律经环境变量注入（DB_PASSWORD / MAIL_PASSWORD / JWT_SECRET）</text>
+  </g>
+
+  <!-- MySQL -->
+  <rect x="648" y="284" width="312" height="182" rx="12" fill="#FFFFFF" stroke="#DCE6E9" filter="url(#soft)"/>
+  <text x="670" y="310" font-size="14" font-weight="700" fill="#15414E">MySQL · longzhong</text>
+  <g font-size="11.5" fill="#41575E">
+    <rect x="670" y="322" width="268" height="28" rx="7" fill="#F6FAF9" stroke="#CFE5DF"/>
+    <text x="818" y="341" text-anchor="middle">行情 / 企业 / 国际 价格表</text>
+    <rect x="670" y="356" width="268" height="28" rx="7" fill="#F6FAF9" stroke="#CFE5DF"/>
+    <text x="818" y="375" text-anchor="middle">商品 / 权限 / 用户 体系</text>
+    <rect x="670" y="390" width="268" height="28" rx="7" fill="#F6FAF9" stroke="#CFE5DF"/>
+    <text x="818" y="409" text-anchor="middle">供需 / 认证 / 公告</text>
+    <rect x="670" y="424" width="268" height="28" rx="7" fill="#FBF6E6" stroke="#E6D493"/>
+    <text x="818" y="443" text-anchor="middle" fill="#8A7320">预计算统计表（cron 定时刷新）</text>
+  </g>
+
+  <!-- 箭头 -->
+  <line x1="500" y1="174" x2="500" y2="196" stroke="#8AA6B0" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="300" y1="262" x2="300" y2="284" stroke="#8AA6B0" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="700" y1="262" x2="700" y2="284" stroke="#8AA6B0" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="620" y1="375" x2="648" y2="375" stroke="#8AA6B0" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- 底部说明 -->
+  <rect x="40" y="486" width="920" height="50" rx="10" fill="#FFFFFF" stroke="#DCE6E9"/>
+  <text x="500" y="508" text-anchor="middle" font-size="12" fill="#41575E">源码仓库为单仓库多目录形态：<tspan font-weight="700" fill="#15414E">backend/</tspan> 后端 · <tspan font-weight="700" fill="#15414E">frontend/</tspan> 前端 · <tspan font-weight="700" fill="#15414E">docs/</tspan> 文档 · <tspan font-weight="700" fill="#15414E">backend/src/main/resources/db/</tspan> 建表与样例数据</text>
+  <text x="500" y="527" text-anchor="middle" font-size="11.5" fill="#7A8C93">数据来源：ChemPrice 化工价格平台</text>
+</svg>
