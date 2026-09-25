@@ -48,3 +48,12 @@ backend/src/main/resources/static/index.html
 
 # ---- 运维脚本（含凭据检测模式串，不入库）----
 push_source.py
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+.settings/
+*.swf
+*.air
+*.ipa
+*.apk
