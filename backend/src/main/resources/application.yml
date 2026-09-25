@@ -1,0 +1,87 @@
+server:
+  port: 9000
+  # 优雅停机：收到 SIGTERM 后先让在途请求跑完再退出（配合 start_app.sh 的重启流程）
+  shutdown: graceful
+  servlet:
+    context-path: /
+
+spring:
+  # 优雅停机等待上限：超过则强制结束，避免重启卡死
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  servlet:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 8MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/longzhong?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: cardplaza
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 600000
+      initialization-fail-timeout: -1
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: chemprice@163.com
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: status
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 604800000
+
+# 爬虫行为识别（详见 security/BotDetectFilter.java）
+# 观察模式：block=false 只记日志不拦截（建议先观察几天，确认无误报再改 true）
+security:
+  bot-detect:
+    block: false            # ⚠️ 观察模式；确认无误报后改 true 才会真正拦截
+    rate-threshold: 900     # 同一 IP 每分钟请求数阈值（仅打标，nginx 已负责限流）
+
+# 登录失败限制
+auth:
+  fail-threshold: 5        # 连续登录失败阈值，达到后冻结账号
+  lock-minutes: 30          # 冻结时长（分钟），到期自动解冻
+
+# 关注产品邮件推送
+push:
+  test-interval-seconds: 60 # 测试推送最小间隔（防连发）
+  register-ip-max: 3        # 同一 IP 注册账号数量上限（窗口内）
+  register-ip-window-hours: 24   # 注册限流窗口（小时）
+
+logging:
+  level:
+    com.datamarket: info
+
+# AI 导出（Excel）落地目录，Web 根目录之外
+chemprice:
+  export:
+    dir: /home/ubuntu/chemprice/exports
+  upload:
+    dir: /home/ubuntu/chemprice/uploads
+  wechat:
+    mp:
+      # 公众号「服务器配置」里的 Token（环境变量注入，见 ~/chemprice/.ai_key.env）
+      token: ${WECHAT_MP_TOKEN:}

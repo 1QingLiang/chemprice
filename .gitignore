@@ -1,0 +1,47 @@
+# ---- 构建产物（体积巨大，可重新生成）----
+# ---- 禁用的旧 git 目录（改名保留，不进仓库）----
+.git-disabled-*/
+target/
+node_modules/
+dist/
+build/
+*.jar
+*.war
+
+# ---- 凭据与密钥（⛔ 绝对不进仓库）----
+*.env
+.secrets.env
+.ai_key.env
+.qq_secrets.env
+*.pem
+*.key
+*.p12
+*.jks
+id_rsa*
+*_secrets*
+.env.*
+
+# ---- 备份与临时文件 ----
+*.bak
+*.bak-*
+*.orig
+*.tmp
+*.log
+*.swp
+*~
+__pycache__/
+*.pyc
+
+# ---- 一次性补丁脚本（历史遗留，非源码）----
+_p_*.py
+_patch_*.py
+
+# ---- 编辑器 ----
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# ---- 前端构建产物误拷进后端 static 的遗留（22MB，nginx 才是真正的前端源）----
+backend/src/main/resources/static/assets/
+backend/src/main/resources/static/index.html

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img">
+<defs><mask id="mRing" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240"><rect width="240" height="240" fill="#fff"/><polyline points="66,170 98,130 122,148 152,104" fill="none" stroke="#000" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/></mask><mask id="mB" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240"><rect width="240" height="240" fill="#fff"/><path d="M 91.6 97.9 A 46 46 0 0 1 127.4 120.0" fill="none" stroke="#000" stroke-width="30"/></mask></defs>
+<g mask="url(#mRing)">
+<circle cx="88" cy="144" r="46" fill="none" stroke="#5ECBB0" stroke-width="20"/>
+<circle cx="152" cy="128" r="46" fill="none" stroke="#15414E" stroke-width="20" mask="url(#mB)"/>
+<path d="M 91.6 97.9 A 46 46 0 0 1 127.4 120.0" fill="none" stroke="#5ECBB0" stroke-width="20"/>
+</g>
+<polyline points="66,170 98,130 122,148 152,104" fill="none" stroke="#C9A227" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="174,74 167.4,105.7 147.4,92.3" fill="#C9A227"/>
+</svg>

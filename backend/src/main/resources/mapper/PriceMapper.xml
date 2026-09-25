@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datamarket.mapper.PriceMapper">
+
+    <select id="getStats" resultType="java.util.Map">
+        SELECT
+            (SELECT COALESCE(SUM(market_count + enterprise_count + intl_count), 0)
+                FROM commodity WHERE status = 1
+                <if test="role != 'ADMIN'">
+                    AND varieties_id IN
+                    <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+                </if>
+            ) AS totalCount,
+            <choose>
+                <when test="role == 'ADMIN'">
+                    (SELECT COUNT(*) FROM commodity WHERE status=1)
+                </when>
+                <otherwise>
+                    (SELECT COUNT(DISTINCT dp.varieties_id) FROM data_permission dp
+                        INNER JOIN commodity c ON c.varieties_id = dp.varieties_id AND c.status = 1
+                        WHERE dp.user_id = #{userId}
+                        AND (dp.expire_date IS NULL OR dp.expire_date &gt;= CURDATE()))
+                </otherwise>
+            </choose>
+            AS varietiesCount,
+            (SELECT MAX(latest_date) FROM commodity WHERE status = 1
+                <if test="role != 'ADMIN'">
+                    AND varieties_id IN
+                    <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+                </if>
+            ) AS latestDate,
+            (SELECT COALESCE(SUM(market_count), 0) FROM commodity WHERE status = 1
+                <if test="role != 'ADMIN'">
+                    AND varieties_id IN
+                    <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+                </if>
+            ) AS marketCount,
+            (SELECT COALESCE(SUM(enterprise_count), 0) FROM commodity WHERE status = 1
+                <if test="role != 'ADMIN'">
+                    AND varieties_id IN
+                    <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+                </if>
+            ) AS enterpriseCount,
+            (SELECT COALESCE(SUM(intl_count), 0) FROM commodity WHERE status = 1
+                <if test="role != 'ADMIN'">
+                    AND varieties_id IN
+                    <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+                </if>
+            ) AS intlCount
+    </select>
+
+    <select id="getAugStats" resultType="java.util.Map">
+        SELECT COUNT(*) AS totalCount,
+            SUM(CASE WHEN data_rise_or_fall > 0 THEN 1 ELSE 0 END) AS upCount,
+            SUM(CASE WHEN data_rise_or_fall = 0 OR data_rise_or_fall IS NULL THEN 1 ELSE 0 END) AS flatCount,
+            SUM(CASE WHEN data_rise_or_fall &lt; 0 THEN 1 ELSE 0 END) AS downCount
+        FROM market_price
+        WHERE data_date = (
+            <!--
+              用「ORDER BY data_date DESC LIMIT 1」代替 MAX(data_date)：
+              后者带 middle_price IS NOT NULL 条件时 MySQL 会退化成全表扫描
+              （626 万行，单次 7.9s）；改用 LIMIT 1 后可走 idx_date_mid 的倒序索引扫描。
+            -->
+            SELECT data_date FROM market_price WHERE middle_price IS NOT NULL
+            ORDER BY data_date DESC LIMIT 1
+        ) AND middle_price IS NOT NULL
+        <if test="role != 'ADMIN'">
+            AND varieties_id IN
+            <foreach collection="permittedIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+        </if>
+    </select>
+
+    <select id="getTrend" resultType="java.util.Map">
+        SELECT DATE_FORMAT(data_date, '%Y-%m') AS month, ROUND(AVG(middle_price), 0) AS avgPrice
+        FROM
+            <choose>
+                <when test="tableType == 'enterprise'">enterprise_price</when>
+                <when test="tableType == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE varieties_id = #{varietiesId} AND middle_price IS NOT NULL
+            AND data_date &gt;= #{startDate} AND data_date &lt;= #{endDate}
+        GROUP BY DATE_FORMAT(data_date, '%Y-%m') ORDER BY month ASC LIMIT 13
+    </select>
+
+    <select id="getMoversTop" resultType="java.util.Map">
+        SELECT varieties_id, varieties_name, market_name, specifications_name,
+               unit_valuation_name, data_date, low_price, high_price, middle_price,
+               data_rise_or_fall, data_rate, business_type, business_type_name
+        FROM
+            <choose>
+                <when test="tableType == 'enterprise'">enterprise_price</when>
+                <when test="tableType == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE data_date = (
+            <!-- 同 getAugStats：用 LIMIT 1 走 idx_date_mid，避免全表扫描 -->
+            SELECT data_date FROM
+                <choose>
+                    <when test="tableType == 'enterprise'">enterprise_price</when>
+                    <when test="tableType == 'international'">international_price</when>
+                    <otherwise>market_price</otherwise>
+                </choose>
+            WHERE middle_price IS NOT NULL
+            ORDER BY data_date DESC LIMIT 1
+        ) AND middle_price IS NOT NULL
+        <choose>
+            <!--
+              排序口径：按【涨跌额】(data_rise_or_fall，元/吨) 排（2026-09-10 用户指定）。
+              注意：榜单同时展示"涨跌额 + 涨跌幅"两列，排序依据是涨跌额，
+              所以高价位品种会靠前（如啶虫脒 56000 涨 2000 元 排在 加氢苯 9500 涨 1400 元 之前）。
+              曾经试过改按涨跌幅排序，用户要求改回涨跌额。
+            -->
+            <when test="type == 'down' or type == 'fall'">
+                AND data_rise_or_fall &lt; 0
+                ORDER BY data_rise_or_fall ASC, middle_price DESC
+            </when>
+            <when test="type == 'flat'">
+                AND (data_rise_or_fall = 0 OR data_rise_or_fall IS NULL) ORDER BY middle_price DESC
+            </when>
+            <otherwise>
+                AND data_rise_or_fall &gt; 0
+                ORDER BY data_rise_or_fall DESC, middle_price DESC
+            </otherwise>
+        </choose>
+        LIMIT #{limit}
+    </select>
+
+    <select id="getMarketPrices" resultType="java.util.Map">
+        SELECT *,
+            <choose>
+                <when test="market == 'enterprise'">2</when>
+                <when test="market == 'international'">4</when>
+                <otherwise>3</otherwise>
+            </choose>
+            AS business_type
+        FROM
+            <choose>
+                <when test="market == 'enterprise'">enterprise_price</when>
+                <when test="market == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE middle_price IS NOT NULL
+        <if test="varietiesIds != null and varietiesIds.size() > 0">
+            AND varieties_id IN
+            <foreach collection="varietiesIds" item="vid" open="(" close=")" separator=",">
+                #{vid}
+            </foreach>
+        </if>
+        <if test="marketName != null and marketName != ''">AND market_name = #{marketName}</if>
+        <if test="startDate != null and startDate != ''">AND data_date &gt;= #{startDate}</if>
+        <if test="endDate != null and endDate != ''">AND data_date &lt;= #{endDate}</if>
+        ORDER BY data_date DESC, varieties_id
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="getMarketPricesCount" resultType="long">
+        SELECT COUNT(*) FROM
+            <choose>
+                <when test="market == 'enterprise'">enterprise_price</when>
+                <when test="market == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE middle_price IS NOT NULL
+        <if test="varietiesIds != null and varietiesIds.size() > 0">
+            AND varieties_id IN
+            <foreach collection="varietiesIds" item="vid" open="(" close=")" separator=",">
+                #{vid}
+            </foreach>
+        </if>
+        <if test="marketName != null and marketName != ''">AND market_name = #{marketName}</if>
+        <if test="startDate != null and startDate != ''">AND data_date &gt;= #{startDate}</if>
+        <if test="endDate != null and endDate != ''">AND data_date &lt;= #{endDate}</if>
+    </select>
+
+    <!--
+      「全部类型」分页：三表 UNION ALL 后由 MySQL 排序分页。
+      原实现为内存分页（每表上限 1000 条），导致第 301 页起全空 —— 已废弃。
+      实测 offset 20000 约 82ms（各表 idx_date_mid / idx_mid_mar 生效）。
+    -->
+    <select id="getMarketPricesUnion" resultType="java.util.Map">
+        SELECT t.*
+        FROM (
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, NULL AS calc_rmb_price, NULL AS fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 3 AS business_type
+            FROM market_price
+            WHERE middle_price IS NOT NULL
+            UNION ALL
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, NULL AS calc_rmb_price, NULL AS fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 2 AS business_type
+            FROM enterprise_price
+            WHERE middle_price IS NOT NULL
+            UNION ALL
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, calc_rmb_price, fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 4 AS business_type
+            FROM international_price
+            WHERE middle_price IS NOT NULL
+        ) t
+        <where>
+            <if test="varietiesIds != null and varietiesIds.size() > 0">
+                AND t.varieties_id IN
+                <foreach collection="varietiesIds" item="vid" open="(" close=")" separator=",">
+                    #{vid}
+                </foreach>
+            </if>
+            <if test="marketName != null and marketName != ''">AND t.market_name = #{marketName}</if>
+            <if test="startDate != null and startDate != ''">AND t.data_date &gt;= #{startDate}</if>
+            <if test="endDate != null and endDate != ''">AND t.data_date &lt;= #{endDate}</if>
+        </where>
+        ORDER BY t.data_date DESC, t.varieties_id, t.id
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="getMarketPricesUnionCount" resultType="long">
+        SELECT COUNT(*)
+        FROM (
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, NULL AS calc_rmb_price, NULL AS fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 3 AS business_type
+            FROM market_price
+            WHERE middle_price IS NOT NULL
+            UNION ALL
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, NULL AS calc_rmb_price, NULL AS fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 2 AS business_type
+            FROM enterprise_price
+            WHERE middle_price IS NOT NULL
+            UNION ALL
+            SELECT id, business_id, varieties_id, varieties_name, market_name,
+                   specifications_name, price_type_name, unit_valuation_name,
+                   region_name, brand_name, data_date, low_price, high_price,
+                   middle_price, rmb_price, calc_rmb_price, fx_used_currency,
+                   data_rise_or_fall, data_rate, remark, uid, fetched_at, 4 AS business_type
+            FROM international_price
+            WHERE middle_price IS NOT NULL
+        ) t
+        <where>
+            <if test="varietiesIds != null and varietiesIds.size() > 0">
+                AND t.varieties_id IN
+                <foreach collection="varietiesIds" item="vid" open="(" close=")" separator=",">
+                    #{vid}
+                </foreach>
+            </if>
+            <if test="marketName != null and marketName != ''">AND t.market_name = #{marketName}</if>
+            <if test="startDate != null and startDate != ''">AND t.data_date &gt;= #{startDate}</if>
+            <if test="endDate != null and endDate != ''">AND t.data_date &lt;= #{endDate}</if>
+        </where>
+    </select>
+
+    <select id="getMarketNames" resultType="java.lang.String">
+        SELECT DISTINCT market_name FROM
+            <choose>
+                <when test="tableType == 'enterprise'">enterprise_price</when>
+                <when test="tableType == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE market_name IS NOT NULL AND market_name &lt;&gt; ''
+        <!--
+          性能：无日期约束时 DISTINCT 会扫全索引（600 万行 ≈ 3.5s）。
+          前端日期选择器始终有值；万一没传则兜底近 90 天，保证响应 < 1.5s。
+          middle_price >= 0 而非 IS NOT NULL：后者会让优化器放弃 idx_mid_mar。
+        -->
+        <choose>
+            <when test="startDate != null and startDate != ''">
+                AND middle_price IS NOT NULL
+                AND data_date &gt;= #{startDate}
+                <if test="endDate != null and endDate != ''">AND data_date &lt;= #{endDate}</if>
+            </when>
+            <otherwise>
+                AND data_date &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+            </otherwise>
+        </choose>
+        <if test="varietiesIds != null and varietiesIds.size() > 0">
+            AND varieties_id IN
+            <foreach collection="varietiesIds" item="vid" open="(" close=")" separator=",">#{vid}</foreach>
+        </if>
+        ORDER BY market_name
+    </select>
+
+    <select id="getPriceMatrix" resultType="java.util.Map">
+        SELECT market_name, specifications_name, unit_valuation_name,
+               data_rise_or_fall AS last_change, data_rate AS last_rate,
+            <foreach collection="dates" item="d" separator=",">
+                MAX(CASE WHEN data_date = #{d} THEN middle_price END) AS d${d}
+            </foreach>
+        FROM
+            <choose>
+                <when test="businessType == 'enterprise'">enterprise_price</when>
+                <when test="businessType == 'international'">international_price</when>
+                <otherwise>market_price</otherwise>
+            </choose>
+        WHERE varieties_id = #{varietiesId} AND middle_price IS NOT NULL
+            AND data_date &gt;= #{startDate} AND data_date &lt;= #{endDate}
+        GROUP BY market_name, specifications_name, unit_valuation_name
+        ORDER BY market_name, specifications_name
+    </select>
+
+</mapper>
