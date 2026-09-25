@@ -1,0 +1,237 @@
+/* ============================================================================
+ * ChemPrice 小程序 · 设计令牌（Design Tokens）
+ * 风格方向：A · 数据仪表盘（密度优先 · 深色头部 + 白卡片分区）
+ * 版本 v1.0 · 2026-09-25
+ *
+ * 用法：在 App.vue 的 <style> 中 @import，或直接粘贴到 uni.scss
+ * 两类密度档位：compact（行情类页面）/ comfortable（内容类页面）
+ * ========================================================================== */
+
+/* ---------------------------------------------------------------- 品牌色板
+ * ⚠️ 必须沿用 Web 端品牌色，不要另起炉灶。
+ * 用户从公众号 / Web 跳转而来，色板不一致会造成割裂感。
+ * ------------------------------------------------------------------------ */
+page,
+:root {
+  /* 主色：品牌深青（头部、主按钮、强调文字） */
+  --cp-brand-900: #0E2F39;
+  --cp-brand-800: #15414E;
+  --cp-brand-700: #1D5A6B;
+  --cp-brand-600: #2A7183;
+  /* 点缀色：浅青绿（选中态、进度、标记） */
+  --cp-accent-500: #5ECBB0;
+  --cp-accent-400: #7DD6C0;
+  --cp-accent-100: #E4F6F1;
+  /* 金色：极少使用，仅重要标识 / 会员标识 */
+  --cp-gold-500: #C9A227;
+
+  /* 中性色 */
+  --cp-ink-900: #1F2933;   /* 主文字 */
+  --cp-ink-700: #3E4C59;   /* 次级文字 */
+  --cp-ink-500: #7B8794;   /* 辅助文字 */
+  --cp-ink-400: #9AA5B1;   /* 占位 / 禁用 */
+  --cp-line-200: #E4E7EB;  /* 分割线 */
+  --cp-line-100: #EEF1F4;  /* 极淡分割线 */
+  --cp-bg-page: #F5F7F9;   /* 页面底色 */
+  --cp-bg-card: #FFFFFF;   /* 卡片 */
+  --cp-bg-sunken: #F0F4F6; /* 内嵌区块 */
+
+  /* ⛔⛔ 涨跌色：中国习惯 —— 涨红跌绿。
+   * 大量开源小程序模板默认欧美惯例（涨绿跌红），直接用会造成严重误导！
+   * 这两个变量名必须叫 up / down，禁止在业务代码里硬编码颜色。 */
+  --cp-up: #D64545;        /* 涨 · 红 */
+  --cp-up-bg: #FCEBEB;
+  --cp-down: #2F9E6B;      /* 跌 · 绿 */
+  --cp-down-bg: #EAF3DE;
+  --cp-flat: #7B8794;      /* 平 */
+  --cp-flat-bg: #F0F4F6;
+
+  /* 语义色 */
+  --cp-warn: #B7791F;
+  --cp-warn-bg: #FAEEDA;
+  --cp-danger: #C0392B;
+  --cp-danger-bg: #FCEBEB;
+  --cp-success: #1F7A5A;
+  --cp-success-bg: #E1F5EE;
+}
+
+/* ------------------------------------------------------------ 密度档位
+ * compact      → 行情 / 涨跌 / 报价明细 / 标点地图（信息密度优先）
+ * comfortable  → 供需 / 帮助 / 关于 / 订阅说明（可读性优先）
+ * ------------------------------------------------------------------------ */
+.cp-compact {
+  --cp-pad-page: 16rpx;      /* 页面左右留白 */
+  --cp-pad-card: 20rpx;      /* 卡片内边距 */
+  --cp-gap-row: 0rpx;        /* 行间距（用分割线代替） */
+  --cp-row-h: 72rpx;         /* 列表行高 */
+  --cp-font-num: 34rpx;      /* 主要数字 */
+  --cp-font-row: 26rpx;      /* 列表正文 */
+  --cp-radius: 12rpx;
+}
+.cp-comfortable {
+  --cp-pad-page: 32rpx;
+  --cp-pad-card: 32rpx;
+  --cp-gap-row: 20rpx;
+  --cp-row-h: 96rpx;
+  --cp-font-num: 40rpx;
+  --cp-font-row: 28rpx;
+  --cp-radius: 20rpx;
+}
+
+/* --------------------------------------------------------------- 字号
+ * ⚠️ 微信小程序中 1px = 2rpx（750rpx 设计稿）。以下按 750 设计稿标注。
+ * ------------------------------------------------------------------------ */
+:root {
+  --cp-fs-h1: 40rpx;     /* 页面主标题 */
+  --cp-fs-h2: 34rpx;     /* 区块标题 */
+  --cp-fs-body: 28rpx;   /* 正文 */
+  --cp-fs-sub: 24rpx;    /* 辅助说明 */
+  --cp-fs-cap: 22rpx;    /* 最小可读字号，禁止更小 */
+  --cp-fs-num-lg: 56rpx; /* 首屏主数字 */
+}
+
+/* --------------------------------------------------------------- 字重
+ * ⛔ 小程序对中文多字重支持有限，只用两档，多写无效。
+ * ------------------------------------------------------------------------ */
+:root {
+  --cp-fw-normal: 400;
+  --cp-fw-medium: 500;
+}
+
+/* ============================================================ 基础组件约定
+
+/* 页面容器 ---------------------------------------------------------------- */
+.cp-page {
+  min-height: 100vh;
+  background: var(--cp-bg-page);
+  padding: 0 var(--cp-pad-page);
+  box-sizing: border-box;
+}
+
+/* 卡片 ------------------------------------------------------------------- */
+.cp-card {
+  background: var(--cp-bg-card);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-pad-card);
+  margin-bottom: 20rpx;
+}
+
+/* 首屏深色价格头（方案 A 的核心视觉锚点） --------------------------------- */
+.cp-hero {
+  background: var(--cp-brand-800);
+  border-radius: var(--cp-radius) var(--cp-radius) 0 0;
+  padding: 28rpx var(--cp-pad-card);
+  color: #FFFFFF;
+}
+.cp-hero__label {
+  font-size: var(--cp-fs-sub);
+  color: #8FB8B0;
+  letter-spacing: 1rpx;
+}
+.cp-hero__num {
+  font-size: var(--cp-fs-num-lg);
+  font-weight: var(--cp-fw-medium);
+  /* ⛔ 等宽字形：否则价格列上下对不齐，扫视体验极差 */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.cp-hero__delta { font-size: var(--cp-fs-body); font-weight: var(--cp-fw-medium); }
+
+/* 数据行（行情列表） ------------------------------------------------------ */
+.cp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--cp-row-h);
+  border-bottom: 1rpx solid var(--cp-line-100);
+}
+.cp-row:last-child { border-bottom: none; }
+.cp-row__name { flex: 1; font-size: var(--cp-font-row); color: var(--cp-ink-900); }
+.cp-row__price {
+  font-size: var(--cp-font-row);
+  color: var(--cp-ink-900);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-align: right;
+  min-width: 160rpx;   /* ⛔ 固定宽度，保证多行数字右对齐 */
+}
+.cp-row__delta {
+  font-size: var(--cp-font-row);
+  font-weight: var(--cp-fw-medium);
+  text-align: right;
+  min-width: 140rpx;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* 涨跌色工具类（⛔ 禁止在业务代码里硬编码颜色，一律用这三个类） ------------- */
+.cp-up   { color: var(--cp-up); }
+.cp-down { color: var(--cp-down); }
+.cp-flat { color: var(--cp-flat); }
+
+/* 标签 / 状态徽标 --------------------------------------------------------- */
+.cp-tag {
+  display: inline-block;
+  font-size: var(--cp-fs-cap);
+  line-height: 1.6;
+  padding: 2rpx 14rpx;
+  border-radius: 100rpx;
+  background: var(--cp-bg-sunken);
+  color: var(--cp-ink-500);
+}
+.cp-tag--need  { background: var(--cp-warn-bg);   color: var(--cp-warn); }   /* 需开通 · 琥珀 */
+.cp-tag--expired { background: var(--cp-danger-bg); color: var(--cp-danger); } /* 已到期 · 红 */
+.cp-tag--ok    { background: var(--cp-accent-100); color: var(--cp-brand-700); }
+.cp-tag--gold  { background: #FAF3DD; color: var(--cp-gold-500); }
+
+/* 主按钮 ----------------------------------------------------------------- */
+.cp-btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: var(--cp-radius);
+  font-size: var(--cp-fs-body);
+  font-weight: var(--cp-fw-medium);
+  text-align: center;
+  background: var(--cp-brand-800);
+  color: #FFFFFF;
+}
+.cp-btn--ghost {
+  background: transparent;
+  border: 1rpx solid var(--cp-line-200);
+  color: var(--cp-ink-900);
+}
+.cp-btn--disabled { background: var(--cp-line-200); color: var(--cp-ink-400); }
+
+/* 数据来源 / 截止日期（合规必需，勿删） ----------------------------------- */
+.cp-source {
+  font-size: var(--cp-fs-cap);
+  color: var(--cp-ink-400);
+  text-align: center;
+  padding: 24rpx 0 32rpx;
+  line-height: 1.7;
+}
+
+/* 骨架屏（替代 loading 转圈，数据类应用的标配） ---------------------------- */
+.cp-skel {
+  background: linear-gradient(90deg, #EDF1F4 25%, #F6F8FA 37%, #EDF1F4 63%);
+  background-size: 400% 100%;
+  animation: cp-skel 1.4s ease infinite;
+  border-radius: 8rpx;
+}
+@keyframes cp-skel {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* ======================================================== 全局使用红线
+ *
+ * 1. ⛔ 涨跌色：涨红跌绿（--cp-up / --cp-down），禁止硬编码。
+ * 2. ⛔ 数字一律加 font-variant-numeric: tabular-nums（等宽字形）。
+ * 3. ⛔ 禁用深色主题（化工用户多在户外/车间，强光下可读性差）。
+ * 4. ⛔ 禁用大面积渐变与阴影（小程序滚动掉帧）。
+ * 5. ⛔ 每屏列表 8–10 行；用分页而非无限滚动（便于回到原位）。
+ * 6. ⛔ 最小字号 22rpx，禁止更小。
+ * 7. ⛔ 数据来源声明固定展示："数据来源：ChemPrice 化工价格平台"。
+ * 8. ⛔ 非交易日必须展示"数据截止 X 日"，不可渲染为错误态。
+ * 9. ⛔ 文案禁用投资类词汇：投资 / 理财 / 期货 / 证券 / 荐股 / 涨跌预测 / 交易信号。
+ */

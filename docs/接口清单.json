@@ -1,0 +1,1003 @@
+[
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/supplier-verifies",
+  "handler": "supplierVerifies",
+  "line": 44
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/supplier-verifies/{id}/ocr",
+  "handler": "ocrLicense",
+  "line": 91
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/supplier-verifies/{id}/review",
+  "handler": "reviewSupplier",
+  "line": 155
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/demand-notice",
+  "handler": "getDemandNotice",
+  "line": 280
+ },
+ {
+  "controller": "AdminController",
+  "http": "PUT",
+  "path": "/api/admin/demand-notice",
+  "handler": "saveDemandNotice",
+  "line": 289
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/suppliers/{userId}/{action}",
+  "handler": "manageSupplier",
+  "line": 334
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/users",
+  "handler": "getUsers",
+  "line": 397
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/ai-logs",
+  "handler": "getAiLogs",
+  "line": 547
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/users",
+  "handler": "createUser",
+  "line": 635
+ },
+ {
+  "controller": "AdminController",
+  "http": "PUT",
+  "path": "/api/admin/users/{id}",
+  "handler": "updateUser",
+  "line": 671
+ },
+ {
+  "controller": "AdminController",
+  "http": "DELETE",
+  "path": "/api/admin/users/{id}",
+  "handler": "deleteUser",
+  "line": 796
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/users/{id}/permissions",
+  "handler": "getPermissions",
+  "line": 818
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/users/{id}/permissions",
+  "handler": "grantPermission",
+  "line": 827
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/users/{id}/permissions/category",
+  "handler": "grantCategory",
+  "line": 850
+ },
+ {
+  "controller": "AdminController",
+  "http": "DELETE",
+  "path": "/api/admin/users/{id}/permissions/category/{category}",
+  "handler": "revokeCategory",
+  "line": 879
+ },
+ {
+  "controller": "AdminController",
+  "http": "DELETE",
+  "path": "/api/admin/users/{id}/permissions/{permId}",
+  "handler": "revokePermission",
+  "line": 891
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/logs",
+  "handler": "getLogs",
+  "line": 935
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/users/{id}/logs",
+  "handler": "getUserLogs",
+  "line": 978
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/users/{id}/push-config",
+  "handler": "getPushConfig",
+  "line": 992
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/users/{id}/reset-verify",
+  "handler": "resetVerify",
+  "line": 1012
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/users/{id}/reset-realname",
+  "handler": "resetRealname",
+  "line": 1032
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/ai-flags",
+  "handler": "getAiFlags",
+  "line": 1057
+ },
+ {
+  "controller": "AdminController",
+  "http": "POST",
+  "path": "/api/admin/ai-flags",
+  "handler": "setAiFlags",
+  "line": 1064
+ },
+ {
+  "controller": "AdminController",
+  "http": "PUT",
+  "path": "/api/admin/users/{id}/push-quota",
+  "handler": "setPushQuota",
+  "line": 1093
+ },
+ {
+  "controller": "AdminController",
+  "http": "GET",
+  "path": "/api/admin/user-stats",
+  "handler": "userStats",
+  "line": 1136
+ },
+ {
+  "controller": "AdminOpenApiController",
+  "http": "GET",
+  "path": "/api/admin/open-api/overview",
+  "handler": "overview",
+  "line": 38
+ },
+ {
+  "controller": "AdminOpenApiController",
+  "http": "GET",
+  "path": "/api/admin/open-api/dashboard",
+  "handler": "dashboard",
+  "line": 44
+ },
+ {
+  "controller": "AdminOpenApiController",
+  "http": "PUT",
+  "path": "/api/admin/open-api/users/{userId}",
+  "handler": "update",
+  "line": 92
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "GET",
+  "path": "/api/admin/qq-notify/groups",
+  "handler": "groups",
+  "line": 76
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "POST",
+  "path": "/api/admin/qq-notify/groups",
+  "handler": "save",
+  "line": 122
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "DELETE",
+  "path": "/api/admin/qq-notify/groups/{groupId}",
+  "handler": "remove",
+  "line": 151
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "GET",
+  "path": "/api/admin/qq-notify/push-all/preview",
+  "handler": "pushAllPreview",
+  "line": 168
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "POST",
+  "path": "/api/admin/qq-notify/push-all",
+  "handler": "pushAll",
+  "line": 201
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "GET",
+  "path": "/api/admin/qq-notify/broadcast/targets",
+  "handler": "broadcastTargets",
+  "line": 270
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "POST",
+  "path": "/api/admin/qq-notify/broadcast",
+  "handler": "broadcast",
+  "line": 300
+ },
+ {
+  "controller": "AdminQqController",
+  "http": "GET",
+  "path": "/api/admin/qq-notify/broadcast/history",
+  "handler": "broadcastHistory",
+  "line": 492
+ },
+ {
+  "controller": "AiChatController",
+  "http": "POST",
+  "path": "/api/ai/chat",
+  "handler": "chat",
+  "line": 35
+ },
+ {
+  "controller": "AiExportController",
+  "http": "GET",
+  "path": "/",
+  "handler": "download",
+  "line": 33
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "GET",
+  "path": "/api/announcement/current",
+  "handler": "current",
+  "line": 51
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "POST",
+  "path": "/api/admin/announcement/publish",
+  "handler": "publish",
+  "line": 64
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "PUT",
+  "path": "/api/admin/announcement/{id}",
+  "handler": "update",
+  "line": 90
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "POST",
+  "path": "/api/admin/announcement/{id}/enable",
+  "handler": "enable",
+  "line": 114
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "POST",
+  "path": "/api/admin/announcement/{id}/disable",
+  "handler": "disable",
+  "line": 126
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "DELETE",
+  "path": "/api/admin/announcement/{id}",
+  "handler": "remove",
+  "line": 134
+ },
+ {
+  "controller": "AnnouncementController",
+  "http": "GET",
+  "path": "/api/admin/announcement/list",
+  "handler": "list",
+  "line": 143
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/login",
+  "handler": "login",
+  "line": 54
+ },
+ {
+  "controller": "AuthController",
+  "http": "GET",
+  "path": "/api/auth/me",
+  "handler": "getCurrentUser",
+  "line": 60
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/register",
+  "handler": "register",
+  "line": 67
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/reset-password",
+  "handler": "resetPassword",
+  "line": 139
+ },
+ {
+  "controller": "AuthController",
+  "http": "GET",
+  "path": "/api/auth/account",
+  "handler": "account",
+  "line": 157
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/phone",
+  "handler": "bindPhone",
+  "line": 191
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/send-code",
+  "handler": "sendCode",
+  "line": 219
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/verify-code",
+  "handler": "verifyCode",
+  "line": 245
+ },
+ {
+  "controller": "AuthController",
+  "http": "POST",
+  "path": "/api/auth/reset-password-by-email",
+  "handler": "resetByEmail",
+  "line": 265
+ },
+ {
+  "controller": "ChemController",
+  "http": "GET",
+  "path": "/api/chem/commodities",
+  "handler": "commodities",
+  "line": 493
+ },
+ {
+  "controller": "ChemController",
+  "http": "GET",
+  "path": "/api/chem/lookup",
+  "handler": "lookup",
+  "line": 518
+ },
+ {
+  "controller": "ChemController",
+  "http": "GET",
+  "path": "/api/chem/sources",
+  "handler": "sources",
+  "line": 833
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand",
+  "handler": "list",
+  "line": 113
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/options",
+  "handler": "options",
+  "line": 207
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/{id}",
+  "handler": "detail",
+  "line": 222
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/{id}/card",
+  "handler": "card",
+  "line": 283
+ },
+ {
+  "controller": "DemandController",
+  "http": "POST",
+  "path": "/api/demand/{id}/contact",
+  "handler": "contact",
+  "line": 323
+ },
+ {
+  "controller": "DemandController",
+  "http": "POST",
+  "path": "/api/demand",
+  "handler": "publish",
+  "line": 382
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/mine",
+  "handler": "mine",
+  "line": 392
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/notice",
+  "handler": "notice",
+  "line": 411
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/status",
+  "handler": "status",
+  "line": 423
+ },
+ {
+  "controller": "DemandController",
+  "http": "PUT",
+  "path": "/api/demand/enabled",
+  "handler": "setEnabled",
+  "line": 455
+ },
+ {
+  "controller": "DemandController",
+  "http": "GET",
+  "path": "/api/demand/dangerous-chem",
+  "handler": "getDangerous",
+  "line": 473
+ },
+ {
+  "controller": "DemandController",
+  "http": "PUT",
+  "path": "/api/demand/dangerous-chem",
+  "handler": "setDangerous",
+  "line": 483
+ },
+ {
+  "controller": "DemandController",
+  "http": "PUT",
+  "path": "/api/demand/{id}",
+  "handler": "update",
+  "line": 506
+ },
+ {
+  "controller": "DemandController",
+  "http": "POST",
+  "path": "/api/demand/{id}/offline",
+  "handler": "offline",
+  "line": 514
+ },
+ {
+  "controller": "DemandController",
+  "http": "DELETE",
+  "path": "/api/demand/{id}",
+  "handler": "deleteDemand",
+  "line": 535
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/access",
+  "handler": "access",
+  "line": 78
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/overview",
+  "handler": "overview",
+  "line": 110
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/province/{province}",
+  "handler": "province",
+  "line": 162
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/varieties",
+  "handler": "varieties",
+  "line": 224
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/variety/{vid}",
+  "handler": "variety",
+  "line": 258
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/users",
+  "handler": "users",
+  "line": 343
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "PUT",
+  "path": "/api/enterprise-map/users/{userId}",
+  "handler": "toggleUser",
+  "line": 370
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/points/varieties",
+  "handler": "pointVarieties",
+  "line": 441
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/points/overview",
+  "handler": "pointOverview",
+  "line": 484
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/points/cities",
+  "handler": "pointCities",
+  "line": 537
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/points/detail",
+  "handler": "pointDetail",
+  "line": 588
+ },
+ {
+  "controller": "EnterpriseMapController",
+  "http": "GET",
+  "path": "/api/enterprise-map/points/matrix",
+  "handler": "pointMatrix",
+  "line": 684
+ },
+ {
+  "controller": "FavoriteController",
+  "http": "GET",
+  "path": "/api/favorites",
+  "handler": "getFavorites",
+  "line": 29
+ },
+ {
+  "controller": "FavoriteController",
+  "http": "POST",
+  "path": "/api/favorites/{varietiesId}",
+  "handler": "addFavorite",
+  "line": 41
+ },
+ {
+  "controller": "FavoriteController",
+  "http": "DELETE",
+  "path": "/api/favorites/{varietiesId}",
+  "handler": "removeFavorite",
+  "line": 111
+ },
+ {
+  "controller": "FavoriteController",
+  "http": "GET",
+  "path": "/api/favorites/latest-prices",
+  "handler": "getFavoriteLatestPrices",
+  "line": 146
+ },
+ {
+  "controller": "HealthController",
+  "http": "GET",
+  "path": "/api/health",
+  "handler": "health",
+  "line": 20
+ },
+ {
+  "controller": "NotificationController",
+  "http": "GET",
+  "path": "/api/notifications/unread-count",
+  "handler": "unreadCount",
+  "line": 30
+ },
+ {
+  "controller": "NotificationController",
+  "http": "GET",
+  "path": "/api/notifications",
+  "handler": "list",
+  "line": 42
+ },
+ {
+  "controller": "NotificationController",
+  "http": "POST",
+  "path": "/api/notifications/{id}/read",
+  "handler": "read",
+  "line": 58
+ },
+ {
+  "controller": "NotificationController",
+  "http": "POST",
+  "path": "/api/notifications/read-all",
+  "handler": "readAll",
+  "line": 67
+ },
+ {
+  "controller": "OpenApiController",
+  "http": "POST",
+  "path": "/api/open/v1/commodities",
+  "handler": "commodities",
+  "line": 33
+ },
+ {
+  "controller": "OpenApiController",
+  "http": "POST",
+  "path": "/api/open/v1/commodities/detail",
+  "handler": "commodityDetail",
+  "line": 47
+ },
+ {
+  "controller": "OpenApiController",
+  "http": "POST",
+  "path": "/api/open/v1/prices/latest",
+  "handler": "latest",
+  "line": 112
+ },
+ {
+  "controller": "OpenApiController",
+  "http": "POST",
+  "path": "/api/open/v1/meta",
+  "handler": "meta",
+  "line": 156
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/commodities",
+  "handler": "getCommodities",
+  "line": 41
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/dashboard/stats",
+  "handler": "getStats",
+  "line": 59
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/dashboard/augstats",
+  "handler": "getAugStats",
+  "line": 82
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/dashboard/trend",
+  "handler": "getTrend",
+  "line": 103
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/dashboard/movers",
+  "handler": "getMovers",
+  "line": 115
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/prices/market-options",
+  "handler": "getMarketOptions",
+  "line": 146
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/prices",
+  "handler": "getMarketPrices",
+  "line": 181
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/prices/matrix",
+  "handler": "getPriceMatrix",
+  "line": 326
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/prices/analysis",
+  "handler": "getAnalysis",
+  "line": 341
+ },
+ {
+  "controller": "PriceController",
+  "http": "GET",
+  "path": "/api/prices/export",
+  "handler": "exportPrices",
+  "line": 421
+ },
+ {
+  "controller": "PushController",
+  "http": "GET",
+  "path": "/api/push/config",
+  "handler": "getConfig",
+  "line": 62
+ },
+ {
+  "controller": "PushController",
+  "http": "POST",
+  "path": "/api/push/config",
+  "handler": "saveConfig",
+  "line": 92
+ },
+ {
+  "controller": "PushController",
+  "http": "POST",
+  "path": "/api/push/test-send",
+  "handler": "testSend",
+  "line": 163
+ },
+ {
+  "controller": "PushTaskController",
+  "http": "GET",
+  "path": "/api/push/tasks",
+  "handler": "listTasks",
+  "line": 81
+ },
+ {
+  "controller": "PushTaskController",
+  "http": "POST",
+  "path": "/api/push/tasks",
+  "handler": "createTask",
+  "line": 189
+ },
+ {
+  "controller": "PushTaskController",
+  "http": "PUT",
+  "path": "/api/push/tasks/{id}",
+  "handler": "updateTask",
+  "line": 274
+ },
+ {
+  "controller": "PushTaskController",
+  "http": "DELETE",
+  "path": "/api/push/tasks/{id}",
+  "handler": "deleteTask",
+  "line": 330
+ },
+ {
+  "controller": "PushTaskController",
+  "http": "POST",
+  "path": "/api/push/tasks/{id}/test",
+  "handler": "testTask",
+  "line": 354
+ },
+ {
+  "controller": "RealnameController",
+  "http": "GET",
+  "path": "/api/realname/pay-qr",
+  "handler": "payQr",
+  "line": 42
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/admin-pay-settings",
+  "handler": "adminPaySettings",
+  "line": 73
+ },
+ {
+  "controller": "RealnameController",
+  "http": "GET",
+  "path": "/api/realname/status",
+  "handler": "status",
+  "line": 101
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/order",
+  "handler": "createOrder",
+  "line": 126
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/order/{orderNo}/mock-pay",
+  "handler": "mockPay",
+  "line": 196
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/verify-id",
+  "handler": "verifyId",
+  "line": 251
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/alipay/notify",
+  "handler": "alipayNotify",
+  "line": 378
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/order/{orderNo}/claim",
+  "handler": "claim",
+  "line": 410
+ },
+ {
+  "controller": "RealnameController",
+  "http": "POST",
+  "path": "/api/realname/admin-confirm/{orderNo}",
+  "handler": "adminConfirm",
+  "line": 442
+ },
+ {
+  "controller": "RealnameController",
+  "http": "GET",
+  "path": "/api/realname/admin-pending",
+  "handler": "adminPending",
+  "line": 481
+ },
+ {
+  "controller": "RealnameController",
+  "http": "GET",
+  "path": "/api/realname/order/{orderNo}",
+  "handler": "orderStatus",
+  "line": 494
+ },
+ {
+  "controller": "SchedulerMonitorController",
+  "http": "GET",
+  "path": "/api/admin/scheduler/status",
+  "handler": "status",
+  "line": 126
+ },
+ {
+  "controller": "SchedulerMonitorController",
+  "http": "GET",
+  "path": "/api/admin/scheduler/log",
+  "handler": "log",
+  "line": 399
+ },
+ {
+  "controller": "SchedulerMonitorController",
+  "http": "GET",
+  "path": "/api/admin/scheduler/run",
+  "handler": "run",
+  "line": 427
+ },
+ {
+  "controller": "SupplierController",
+  "http": "GET",
+  "path": "/api/supplier/me",
+  "handler": "me",
+  "line": 49
+ },
+ {
+  "controller": "SupplierController",
+  "http": "POST",
+  "path": "/api/supplier/apply",
+  "handler": "apply",
+  "line": 77
+ },
+ {
+  "controller": "SupplierController",
+  "http": "GET",
+  "path": "/api/supplier/demand-notify",
+  "handler": "getDemandNotify",
+  "line": 274
+ },
+ {
+  "controller": "SupplierController",
+  "http": "PUT",
+  "path": "/api/supplier/demand-notify",
+  "handler": "saveDemandNotify",
+  "line": 306
+ },
+ {
+  "controller": "UploadController",
+  "http": "POST",
+  "path": "/api/upload/license",
+  "handler": "license",
+  "line": 46
+ },
+ {
+  "controller": "UploadController",
+  "http": "GET",
+  "path": "/api/upload/license/{name}",
+  "handler": "view",
+  "line": 190
+ },
+ {
+  "controller": "UserOpenApiController",
+  "http": "GET",
+  "path": "/api/open-api/status",
+  "handler": "status",
+  "line": 49
+ },
+ {
+  "controller": "UserOpenApiController",
+  "http": "POST",
+  "path": "/api/open-api/key",
+  "handler": "create",
+  "line": 88
+ },
+ {
+  "controller": "UserOpenApiController",
+  "http": "GET",
+  "path": "/api/open-api/dashboard",
+  "handler": "dashboard",
+  "line": 129
+ },
+ {
+  "controller": "UserOpenApiController",
+  "http": "PUT",
+  "path": "/api/open-api/key/{id}",
+  "handler": "update",
+  "line": 176
+ },
+ {
+  "controller": "UserOpenApiController",
+  "http": "DELETE",
+  "path": "/api/open-api/key/{id}",
+  "handler": "delete",
+  "line": 204
+ },
+ {
+  "controller": "WechatMpController",
+  "http": "GET",
+  "path": "/text/plain;charset=UTF-8",
+  "handler": "verify",
+  "line": 46
+ },
+ {
+  "controller": "WechatMpController",
+  "http": "POST",
+  "path": "/application/xml;charset=UTF-8",
+  "handler": "handle",
+  "line": 63
+ },
+ {
+  "controller": "WechatMpController",
+  "http": "GET",
+  "path": "/status",
+  "handler": "status",
+  "line": 177
+ }
+]

@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChemPrice 小程序 · AI 开发提示词</title>
+<style>
+:root{--ink:#1f2933;--ink2:#52606d;--line:#e4e7eb;--brand:#15414E;--brand2:#5ECBB0;
+--red:#c0392b;--amber:#b7791f;--green:#1f7a5a;--bg:#f5f7f9;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+font-size:15px;line-height:1.85;}
+.top{background:linear-gradient(135deg,#15414E,#1d5a6b);color:#fff;padding:34px 28px 26px;}
+.top h1{margin:0 0 6px;font-size:26px;line-height:1.4;}
+.top .sub{opacity:.85;font-size:13.5px;letter-spacing:.3px;}
+.wrap{max-width:1000px;margin:0 auto;padding:26px 22px 70px;}
+.nav{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:0 0 24px;}
+.nav b{display:block;font-size:13px;color:var(--ink2);margin-bottom:8px;letter-spacing:.5px;}
+.nav a{display:inline-block;font-size:13px;color:var(--brand);text-decoration:none;
+border:1px solid var(--line);border-radius:14px;padding:2px 11px;margin:3px 6px 3px 0;}
+.nav a:hover{background:#eef7f5;border-color:var(--brand2);}
+.doc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 34px 44px;
+box-shadow:0 2px 16px rgba(31,41,55,.05);}
+h1{font-size:24px;color:var(--brand);margin:0 0 14px;}
+h2{font-size:20px;color:var(--brand);margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid #eef1f4;}
+h2.warn{border-bottom-color:#f6c6c0;}
+h3{font-size:17px;color:#1d3f4b;margin:28px 0 10px;}
+h3.warn{color:var(--red);}
+h4{font-size:15px;margin:20px 0 8px;color:var(--ink2);}
+p{margin:10px 0;}
+a{color:#166b8a;}
+strong{color:#0f3b47;}
+code{background:#f1f4f7;border:1px solid #e3e8ee;border-radius:5px;padding:1px 6px;
+font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace;color:#8a4b12;}
+pre{background:#0f2a33;color:#dff1ee;border-radius:9px;padding:16px 18px;overflow:auto;font-size:13px;
+line-height:1.7;}
+pre code{background:none;border:none;color:inherit;padding:0;}
+hr.rule{border:none;border-top:1px dashed #d6dde4;margin:34px 0;}
+.tw{overflow-x:auto;margin:14px 0;}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px;}
+th{background:#f0f5f7;color:#12333d;text-align:left;padding:9px 12px;border:1px solid var(--line);
+font-weight:600;white-space:nowrap;}
+td{padding:9px 12px;border:1px solid var(--line);vertical-align:top;line-height:1.75;}
+tbody tr:nth-child(even){background:#fafcfd;}
+.note{background:#f0f7fb;border-left:4px solid #7fb3c9;border-radius:0 8px 8px 0;
+padding:12px 18px;margin:14px 0;font-size:14px;color:#2c4a56;}
+ul,ol{margin:10px 0;padding-left:24px;}
+li{margin:5px 0;}
+ul.nested,ol.nested{font-size:14px;color:var(--ink2);}
+.ic-red{color:var(--red);font-weight:700;}
+.ic-amber{color:var(--amber);font-weight:700;}
+.ic-green{color:var(--green);font-weight:700;}
+.ic-note{color:#2f7fb5;font-weight:700;}
+.foot{color:#98a3ad;font-size:12.5px;text-align:center;margin:26px 0 0;}
+@media print{.nav{display:none}.doc{box-shadow:none;border:none}.top{background:#15414E}}
+@media (max-width:640px){.doc{padding:20px 16px 30px}body{font-size:14.5px}}
+</style></head><body>
+<div class="top"><h1>ChemPrice 化工价格平台 · 微信小程序版需求文档</h1>
+<div class="sub">v1.0 · 2026-09-25 · 配套《小程序需求文档 v1.1》· 先发 P0 再发 P1</div></div>
+<div class="wrap">
+<div class="nav"><b>目录</b><a href="#p2-a-只读骨架">P2-A · 只读骨架</a><a href="#p2-b-标点地图-最难-单独一轮">P2-B · 标点地图（最难，单独一轮）</a><a href="#p2-c-供需-消息">P2-C · 供需 + 消息</a></div>
+<div class="doc">
+<h1>ChemPrice 小程序 · AI 开发提示词（Prompt Pack）</h1>
+<div class="note">用途：把这份提示词整段交给 Claude Code / Cursor / WorkBuddy 等 AI 编程工具，即可按既有后端开工小程序前端。<br>版本 v1.0 · 2026-09-25 · 配套《小程序需求文档 v1.1》<br><strong>使用顺序：先发 P0（总纲），再按里程碑发 P1/P2/P3。别一次性全发。</strong></div>
+<hr class="rule">
+<h1>P0 · 总纲（必须第一条发送）</h1>
+<pre><code>你是资深微信小程序前端工程师。现在要为一个**已上线的化工价格数据平台 ChemPrice** 开发微信小程序端。
+
+## 一、最重要的约束：后端已存在，不要重写
+
+后端是 Spring Boot 3.5.6（Java 21）+ MySQL，**已经完整上线**，端口 9000，nginx 反代。
+小程序端**只写前端**，需要新接口时先提出来，不要假设后端可以由你随意改动。
+
+技术栈现状（Web 端，供你理解数据结构）：
+- Vue 3.4 + Vite + Pinia + Vue Router 4
+- ECharts 5.5.0（图表）、Element Plus（组件）
+- axios
+
+## 二、你的技术选型
+
+⚠️ 必须使用 **uni-app（Vue 3 + TypeScript）**，理由：语法与现有 Vue3 代码接近、可复用部分逻辑、
+一套代码可编译到微信小程序 / H5 / App。
+
+- 构建：`@dcloudio/uni-app` 最新稳定版
+- 语言：TypeScript（严格模式）
+- 状态管理：Pinia
+- 请求：封装 `uni.request`，**不要用 axios**（小程序环境不支持 XHR）
+- UI：优先 `uni-ui`，必要时自绘
+- 图表：`lime-echart` 或 `echarts-for-weixin`（按需引入 ECharts 模块，禁止全量引入）
+- 地图：微信原生 `map` 组件 + 自绘 canvas 着色，或 ECharts geo（见 P2）
+
+## 三、⛔ 六条红线（违反即返工）
+
+### 红线 1：业务错误码判断，绝不能只看 HTTP 状态码
+后端返回结构：`{ code: number, message: string, data: T }`
+**业务错误也会以 HTTP 200 返回！**
+- ✅ 必须：`if (res.data.code !== 200) { ... }`（成功码以后端实际为准，先在 `/api/auth/me` 上验证）
+- ❌ 禁止：`if (res.statusCode !== 200)`
+这条是踩过坑的，网上搜到的"小程序请求封装"模板基本都是错的。
+
+### 红线 2：权限判定必须调用后端接口，禁止前端自行推导
+标点地图可用性**只能**消费 `GET /api/enterprise-map/access` 的返回字段：</code></pre>
+<p>{ switchOn: boolean, enabled: boolean, expireDate: string|null, daysLeft: number|null, expired: boolean, reason: string }</p>
+<pre><code>- ❌ 禁止在前端写 `switchOn &amp;&amp; !expired` 之类的组合判断
+- ❌ 禁止前端自行计算剩余天数（用后端 `daysLeft`）
+- 前端只负责把 `enabled=false` 映射成"需开通"、`expired=true` 映射成"已到期"
+
+### 红线 3：注意交易日，非交易日不能报异常
+平台有交易日历。法定节假日 / 休市日**不更新行情数据**（爬虫不跑）。
+- 页面必须展示"数据截止 X 日"，用后端返回的 `data_date`
+- ❌ 禁止把"数据日期不是今天"渲染成错误 / 警告
+- 存在调休补班日（周末照常开市），**日期运算判断不了**，一切以数据为准
+
+### 红线 4：禁止暴露数据供应商名称
+全站（含分享卡片、订阅消息、帮助页）**不得出现数据源供应商名称**（具体名称不问，照此执行即可）。
+统一口径文案：`数据来源：ChemPrice 化工价格平台`。
+❌ 具体禁用名单会在你交付时由我核对，你只需保证所有来源文案都用上面这一句。
+
+### 红线 5：合规红线（服务类目相关，内容审核会挂）
+小程序申报类目是「商业服务 → 信息查询」。全站文案**禁止**出现：
+`投资` `理财` `期货` `证券` `荐股` `涨跌预测` `行情分析报告` `交易信号` `抄底` `加仓`
+✅ 允许用语：`原料价格` `报价点` `价格走势` `数据查询` `仅供参考`
+
+### 红线 6：包体与性能
+- 主包 ≤ 2MB，分包总计 ≤ 20MB
+- 地理数据（GeoJSON）**必须分包或按省懒加载**，禁止一次性引入全国市级数据（Web 端那个文件 2.38MB，直接搬过来必然超限）
+- ECharts **必须按需引入**（只引 line / bar / heatmap / tooltip 等实际用到的模块）
+
+## 四、认证方式
+
+- 小程序登录：`wx.login()` → `code` → `POST /api/wx/login` → 返回 JWT
+- 后续请求带 `Authorization: Bearer &lt;token&gt;`
+- JWT 过期处理：拦截到 401 → 静默重新登录一次 → 重放原请求；再失败才跳登录页
+- ⚠️ Web 端用的是 HS256 JWT，小程序端**不需要也不允许**接触签名密钥
+
+## 五、交付要求
+
+1. 先输出**目录结构 + 接口清单 + 需要后端新增的接口列表**，等我确认后再写代码
+2. 所有网络请求统一走 `src/utils/request.ts`，统一处理红线 1 与 401
+3. 每个页面必须有 4 种状态：加载中 / 正常 / 空数据 / 请求失败（含重试按钮）
+4. 类型定义集中在 `src/types/`，禁止 `any` 满天飞
+5. 提交前自查红线 1–6，逐条在回复里打勾
+
+## 六、现在开始
+
+第一步只做一件事：**阅读下面 P1 提供的接口契约，输出你的技术方案与目录结构，不要写代码。**</code></pre>
+<hr class="rule">
+<h1>P1 · 接口契约（第二条发送）</h1>
+<pre><code>以下是后端**已存在**的真实接口，请据此设计前端。
+
+## 基础信息
+- 开发期 BaseURL：`http://82.156.8.214`（nginx 80 端口反代到 9000）
+- ⚠️ 正式环境必须是 **已备案的 HTTPS 域名**（小程序 request 合法域名只接受 HTTPS + ICP 备案）
+- IP + HTTP 在真机与开发者工具中都**无法调用**（开发者工具可勾选"不校验合法域名"仅供本机调试）
+
+## 1. 认证 `/api/auth`
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| POST | `/api/auth/login` | 账号密码登录 → JWT |
+| GET | `/api/auth/me` | 当前用户信息（含权限字段） |
+| POST | `/api/auth/register` | 注册 |
+| POST | `/api/auth/send-code` | 发送验证码 |
+| POST | `/api/auth/verify-code` | 校验验证码 |
+| POST | `/api/auth/reset-password` | 重置密码 |
+| PUT | `/api/auth/account` | 修改账号信息 |
+| PUT | `/api/auth/phone` | 修改手机号 |
+
+`/api/auth/me` 返回的用户对象包含权限相关字段（数据权限品种、导出权限、标点地图开关与到期日、开放 API 开关）。
+
+## 2. 行情数据 `/api`（PriceController）
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/commodities` | 商品列表（**注意：表名 commodity，共 323 行，其中在售 256 个**） |
+| GET | `/api/dashboard/stats` | 看板统计 |
+| GET | `/api/dashboard/augstats` | 看板补充统计 |
+| GET | `/api/dashboard/trend` | 趋势数据 |
+| GET | `/api/dashboard/movers` | 涨跌排行 |
+| GET | `/api/prices` | 报价明细（⚠️ 关键接口，见下方说明） |
+| GET | `/api/prices/market-options` | 可选市场/报价点筛选 |
+| GET | `/api/prices/matrix` | 价格矩阵 |
+| GET | `/api/prices/analysis` | 报价点分析 |
+| GET | `/api/prices/export` | 导出（⚠️ **小程序端不使用**，导出权限仅 Web 端） |
+
+### ⚠️ 关于 `/api/prices` 的重要提示
+这是最核心也最"重"的接口，底层是三张亿级表：
+- `market_price`（约 651 万行）
+- `enterprise_price`（约 736 万行）
+- `international_price`（约 65 万行）
+
+慢查询与分页是历史重灾区，后端已做优化。你调这个接口时必须：
+1. **必须传分页参数**，禁止一次拉全量
+2. **必须容忍慢响应** —— 前端超时不要设 10 秒以下（曾因 10s 超时静默 abort 导致页面一直转圈）
+3. 「全部类型」查询是后端 `UNION ALL` + SQL 层 `LIMIT/OFFSET`，**不要在前端做二次分页或排序**
+4. 看到响应慢先怀疑网络与超时设置，**不要**改成分页拉全量再前端切片
+
+## 3. 标点地图 `/api/enterprise-map`（⭐ 核心功能）
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/enterprise-map/access` | ⭐ **权限判定唯一入口** |
+| GET | `/api/enterprise-map/points/varieties` | 可选品种（256 个） |
+| GET | `/api/enterprise-map/points/overview` | 总览（可传 province 下钻） |
+| GET | `/api/enterprise-map/points/cities` | 市列表（传 province） |
+| GET | `/api/enterprise-map/points/detail` | 报价点明细（传 province / city / varietiesId） |
+| GET | `/api/enterprise-map/points/matrix` | 省份×品种矩阵（可传 province、topRow、topCol） |
+
+数据规模：**2,288 个报价点、30 个省级行政区、282 个城市、256 个品种**。
+数据源是预计算表 `enterprise_point_stat`（每日 06:40 刷新），响应很快。
+
+### ⛔ 三个必须知道的坑
+1. **`varietiesId = 0` 是"全部品种去重"行**。查询"全部品种"时必须传 0，**不能**跨品种把各省数字相加（会重复计点）。
+2. **`/points/detail` 返回的是点级粒度**，不要拿汇总口径的数据去渲染单点。
+3. 部分报价点**只能确定到省级**（城市无法可靠判定）。页面必须保留提示："另有 N 个报价点仅到省级"。
+
+## 4. 供需 `/api/demand`
+根路径 `/api/demand`，提供供需广场的列表 / 详情 / 发布 / 修改。
+⚠️ 发布校验规则（**前端必须前置校验，否则用户提交后才报错**）：
+- 必填：`title`、`varietiesName`（或 items）、`contactName`、`contactPhone`
+- **求购必须填数量，供应选填** ← 这是业务规则，别写反
+- 危化品关键词会被后端拦截（名单由后台配置，前端不用硬编码，但要给出友好提示）
+
+## 5. 其他
+| 路径 | 说明 | 小程序是否使用 |
+|---|---|---|
+| `/api/favorites` | 收藏 | ✅ 使用 |
+| `/api/notifications` | 通知/公告 | ✅ 使用 |
+| `/api/upload` | 文件上传 | P2（供应商认证） |
+| `/api/open/v1/*` | 开放 API（积分制） | ❌ 不用 |
+| `/api/admin/*` | 管理端 | ❌ 不用 |
+
+## 6. 需要后端新增的接口（你只需提需求，我实现）
+| 接口 | 用途 |
+|---|---|
+| `POST /api/wx/login` | code 换 openid + 登录态 |
+| `POST /api/wx/bind` | 微信 openid 绑定平台账号 |
+| `POST /api/wx/subscribe` | 记录订阅消息授权 |
+| `POST /api/wx/pay/order` | 下单（订阅付费） |
+| `POST /api/wx/pay/callback` | 支付回调 |
+
+请在方案中说明你还需要哪些接口。
+
+## 7. 现在要做的事
+输出：① 页面清单与路由表 ② 目录结构 ③ 请求封装设计 ④ 你需要的接口补充清单。
+仍然**不要写业务代码**。</code></pre>
+<hr class="rule">
+<h1>P2 · 里程碑任务（分三次发送）</h1>
+<h2 id="p2-a-只读骨架" class="h-lv2">P2-A · 只读骨架</h2>
+<pre><code>开始实现 M1：只读骨架。范围如下，不要超范围。
+
+页面：
+1. 登录页（微信一键登录 + 未绑定时引导绑定平台账号）
+2. 看板（首页）：数据日期 + 关注品种卡片 + 快捷入口
+3. 商品列表：分类筛选 + 搜索 + 分页
+4. 商品详情：最新价、涨跌、走势图、报价点列表
+5. 涨跌排行：涨幅/跌幅切换
+6. 我的：账号信息、我的权限（数据权限品种清单、标点地图状态与有效期）
+
+参考接口：P1 的 `/api/auth`、`/api/commodities`、`/api/dashboard/*`、`/api/prices`、`/api/favorites`。
+
+硬性要求：
+- 每个页面 4 种状态齐全（loading / 正常 / 空 / 失败+重试）
+- 请求封装统一处理业务码（红线 1）与 401 静默重登
+- 看板必须展示"数据截止 X 日"，非交易日正常显示不报错（红线 3）
+- 所有来源文案用"数据来源：ChemPrice 化工价格平台"（红线 4）
+- 文案禁用词自查一遍（红线 5）
+
+交付：可运行的代码 + 每个页面的实现说明 + 红线自查表。</code></pre>
+<h2 id="p2-b-标点地图-最难-单独一轮" class="h-lv2">P2-B · 标点地图（最难，单独一轮）</h2>
+<pre><code>开始实现 M2：标点地图。这是整个小程序的核心差异功能，也是最难的一块。
+
+功能：
+1. 页签一「企业分布」：全国地图着色（按报价点数）
+2. 页签二「产品分布」：可切换 256 个品种
+3. **逐级下钻**：全国 → 省 → 市 → 报价点列表，带面包屑与返回
+4. 只到省级的报价点要单独提示（不参与城市下钻）
+5. 三张分析图：TOP10 条形（可点击下钻）、集中度帕累托、省份×品种矩阵
+
+⛔ 权限三态（必须严格区分，这是踩过坑的）：
+- `权限未知（接口未返回）` → **不打任何标记**
+- `未开通（enabled=false）` → 琥珀色「需开通」+ 三步开通引导
+- `已到期（expired=true）` → 红色「已到期」+ 续期引导
+- 未到期但 `daysLeft &lt;= 7` → 提示剩余天数
+判定**只能**消费 `/api/enterprise-map/access` 的字段，禁止前端推导（红线 2）。
+
+⛔ 地图技术难点（重点解决）：
+- 全国市级 GeoJSON 有 2.38MB，**绝不能进主包** → 用分包，或按省懒加载
+- 移动端手势冲突：地图缩放/平移会误触发下钻 → **下钻只响应点击省市区域，禁止双击下钻**
+- TMap（腾讯地图）在小程序里若使用，注意其内联层级；Web 端曾因内联 z-index 全覆盖导致按钮点不到，小程序同样要**真机**验证可点性
+- 矩阵热力图在手机上放不下 → 横向滚动 + 固定首列
+
+⛔ 必须真机验证：
+- 每个可点元素都要确认真能点到（不能用"看起来对"代替）
+- 下钻后地图能正确缩放居中
+- 返回上一级的三条路径（地图按钮 / 侧栏按钮 / 面包屑）都要通
+
+交付：代码 + 真机测试截图 + 三个坑的处理说明。</code></pre>
+<h2 id="p2-c-供需-消息" class="h-lv2">P2-C · 供需 + 消息</h2>
+<pre><code>开始实现 M3：供需广场与订阅消息。
+
+功能：
+1. 供需列表（求购/供应分类、分页）
+2. 详情页
+3. 发布（求购/供应）
+4. 留言/回复
+5. 我的发布 / 我的留言
+
+⛔ 发布校验（前端必须前置）：
+- 求购：数量**必填**
+- 供应：数量**选填**
+- 必填项：标题、品种、联系人、联系电话
+- 危化品关键词被后端拦截时，展示友好提示（不要暴露内部名单）
+
+订阅消息（3 类）：
+1. 供需互动提醒（有人留言/回复时）—— P0
+2. 标点地图权限到期前 7 天提醒 —— P1
+3. 行情异动提醒（关注品种涨跌幅超阈值）—— P2
+
+⛔ 授权时机设计（别一进来就弹授权）：
+- 必须在用户**主动动作之后**请求订阅授权（如发布成功、收藏成功）
+- 每次授权只对应一次机会，要设计好"什么时候问"
+
+交付：代码 + 授权时机说明 + 发布校验的边界用例表。</code></pre>
+<hr class="rule">
+<h1>P3 · 商业化（主体确认后发送）</h1>
+<pre><code>开始实现 M4：订阅付费。
+
+前置（由我保证，你只需按此实现）：
+- 小程序主体为**企业/个体工商户**（已签约微信支付商户号）
+- 后端提供 `/api/wx/pay/order`（下单）与 `/api/wx/pay/callback`（回调，已做幂等）
+
+套餐（最终价格以后端返回为准，前端不硬编码）：
+- 基础：数据权限（全部品种）+ 看板/商品/涨跌
+- 专业：基础上 + 标点地图
+- 单点：仅标点地图
+
+流程：
+1. 套餐页 → 选套餐 → `POST /api/wx/pay/order` 拿支付参数
+2. `wx.requestPayment` 调起收银台
+3. 支付后**必须**查询订单状态（不能只信客户端回调），后端回调为准
+4. 权限生效后刷新 `/api/auth/me` 与 `/api/enterprise-map/access`
+
+⛔ 边界必须处理：
+- 用户支付中途取消 → 订单状态与展示一致，不产生"已付款"误解
+- 支付成功但客户端未收到 → 提供"我已完成支付"手动查询入口
+- 到期日语义：**到期当天仍有效，次日起失效**（与后端一致，前端不要自己算）
+- 「我的」页必须展示到期日与剩余天数（取后端 `daysLeft`）
+
+⛔ 合规：
+- 购买页需展示订阅类退款政策
+- 不得出现投资类表述（红线 5 继续有效）
+
+交付：代码 + 支付异常分支的覆盖说明。</code></pre>
+<hr class="rule">
+<h1>附 · 一段超短版（用于快速试跑 / 空间有限的工具）</h1>
+<pre><code>为 ChemPrice 化工价格平台开发微信小程序端（uni-app + Vue3 + TS + Pinia）。
+
+后端已存在（Spring Boot 3.5.6，端口 9000），你只写前端，不要重写后端。
+
+六条红线：
+1. 后端业务错误走 HTTP 200 + `{code,message,data}`，**必须判 code，不能只看 statusCode**
+2. 标点地图权限只消费 `/api/enterprise-map/access`（switchOn/enabled/expireDate/daysLeft/expired），禁止前端推导；权限必须三态（未知不打标记 / 未开通琥珀色"需开通" / 已到期红色"已到期"）
+3. 非交易日不更新数据，必须展示"数据截止 X 日"，不要渲染成错误
+4. 全站不得出现数据供应商名称，统一"数据来源：ChemPrice 化工价格平台"
+5. 文案禁用：投资/理财/期货/证券/荐股/涨跌预测/交易分析
+6. 主包 ≤2MB，GeoJSON 必须分包或按省懒加载，ECharts 按需引入
+
+核心接口：
+- 行情：`/api/commodities`、`/api/dashboard/*`、`/api/prices`（必带分页，超时别设低于 10s）
+- 地图：`/api/enterprise-map/points/{varieties|overview|cities|detail|matrix}`（`varietiesId=0` 表示"全部品种去重"，不可跨品种相加）
+- 供需：`/api/demand`（求购数量必填、供应选填）
+
+MVP 页面：登录 / 看板 / 商品列表 / 商品详情 / 涨跌排行 / 标点地图（全国→省→市→报价点下钻）/ 供需广场 / 我的。
+每页必须有 4 种状态：loading / 正常 / 空 / 失败+重试。
+
+第一步只输出技术方案与目录结构，不要写代码。</code></pre>
+<hr class="rule">
+<h1>使用说明（给你自己看的）</h1>
+<div class="tw"><table><thead><tr><th>顺序</th><th>发送内容</th><th>预期产出</th></tr></thead><tbody><tr><td>1</td><td>P0 总纲</td><td>AI 复述约束，确认理解</td></tr><tr><td>2</td><td>P1 接口契约</td><td>页面清单、目录结构、请求封装设计、需补接口</td></tr><tr><td>3</td><td>P2-A</td><td>M1 只读骨架可运行代码</td></tr><tr><td>4</td><td>P2-B</td><td>M2 标点地图（含真机截图）</td></tr><tr><td>5</td><td>P2-C</td><td>M3 供需 + 消息</td></tr><tr><td>6</td><td>P3</td><td>M4 订阅付费</td></tr></tbody></table></div>
+<p><strong>注意事项</strong>：</p>
+<ol><li><strong>先 P0+P1，等它输出方案再放行代码</strong>。一次性全发，AI 容易跳过设计直接写垃圾代码。</li><li>P2-B 是唯一需要<strong>真机反复验证</strong>的一环，别接受"看上去对"。</li><li>提示词里刻意<strong>不写数据库密码、JWT 密钥、AppSecret</strong> —— 凭据一律运行时通过环境变量传递，绝不落进提示词或代码。</li><li>交付后必须人工核对：红线 1/2/5 是最容易反复犯的三条。</li></ol>
+<p class="foot">— 文档完 —</p>
+</div></div></body></html>
